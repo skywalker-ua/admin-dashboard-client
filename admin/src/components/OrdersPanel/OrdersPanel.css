@@ -4,16 +4,20 @@
 
 .orders-title-header{
     display: flex;
-    width: 100%;
+    width: 97%;
     padding: 10px;
-    justify-content: space-evenly;
 }
 
 .product-image {
     max-width: 50px;
 }
 
-.product-img {}
+.order-qty {
+}
+
+.product-img {
+    flex-grow: 1;
+}
 
 .order-date {
     flex-grow: 1;

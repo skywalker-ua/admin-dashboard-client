@@ -12,11 +12,12 @@ const OrdersTitlePaper = styled(Paper)({
 
 const OrdersTitle = () => {
     return(
-        <OrdersTitlePaper>
+        <OrdersTitlePaper square>
             <div className="orders-title-header">
-                <Typography className="orders-number">Номер замовлення</Typography>
-                <Typography className="order-date">Дата замовлення</Typography>
-                <Typography className="product-img">Фото товару</Typography>
+                <Typography className="orders-number">Номер</Typography>
+                <Typography className="order-date">Дата</Typography>
+                <Typography className="product-img"></Typography>
+                <Typography className="product-qty">К-ть</Typography>
             </div>
         </OrdersTitlePaper>
     )

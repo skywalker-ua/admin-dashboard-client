@@ -14,7 +14,7 @@ const OrderPanel = styled(ExpansionPanel)({
 })
 
 const OrdersPanel = (props) => {
-    const { orderNumber, orderDate, productImage, productName } = props;
+    const { orderNumber, orderDate, productImage, productName, productQty } = props;
     return(
         <React.Fragment>
             
@@ -24,7 +24,10 @@ const OrdersPanel = (props) => {
                     expandIcon={<ExpandMoreIcon />}>
                     <Typography variant="subtitle1" className="orders-number">№ {orderNumber}</Typography>
                     <Typography className="order-date">{orderDate}</Typography>
-                    <img className="product-image" src={productImage} alt={productName} />
+                    <div className="product-img">
+                        <img className="product-image" src={productImage} alt={productName} />
+                    </div>
+                    <Typography className="order-qty">{productQty} шт.</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     Content

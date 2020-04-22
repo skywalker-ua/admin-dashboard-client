@@ -12,7 +12,8 @@ const Orders = () => {
                     orderNumber={order.orderId} 
                     orderDate={order.date}
                     productImage={order.productImgUrl}
-                    productName={order.productName} />
+                    productName={order.productName}
+                    productQty={order.qty} />
             ))}
         </React.Fragment>
     );
