@@ -1,0 +1,20 @@
+.orders-number {
+    flex-grow: 1;
+}
+
+.orders-title-header{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.product-image {
+    max-width: 50px;
+}
+
+.product-img {}
+
+.order-date {
+    flex-grow: 1;
+}
