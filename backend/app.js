@@ -1,25 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const mysql = require('mysql2');
+const sequelize = require('./util/database');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'nazarino203',
-    database: 'chemiplast_data'
-});
+// Routing controller
+app.use(adminRoutes);
 
-pool.query('SELECT * FROM orders', (err, result) => { 
-    console.log(result[0]);
-});
+//Connect to MySQL database
+sequelize   
+    .sync()
+    .then(result => {
+        console.log('Connected');
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
 app.use(bodyParser.urlencoded({extended: true}));
-
-app.get('/', (req, res, next) => {
-    res.send('Hello App!');
-})
 
 app.listen(5000);
