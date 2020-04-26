@@ -13,6 +13,16 @@
     width: 40%;
 }
 
+.orders-main {
+    width: 100%;
+}
+
 .form-paper {
     width: 300px;
+}
+
+@media (max-width: 846px) {
+    .sidebar {
+        display: none;
+    }
 }

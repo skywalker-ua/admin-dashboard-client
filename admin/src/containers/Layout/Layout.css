@@ -1,7 +1,13 @@
 .layout-children {
-    padding: 20px;
     display: flex;
-    flex-flow: column nowrap; 
+    flex-grow: 1;
+    display: flex;
     justify-content: center;
 }
 
+.layout-content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: calc(100vw - 240px);
+}

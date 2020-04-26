@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import OrdersPanel from '../components/OrdersPanel';
 import OrdersTitle from '../components/OrdersPanel/OrdersTitle';
 import data from '../constants/orders.json';
+import axios from 'axios';
 
 const Orders = () => {
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/orders')
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+    }, [])
+
     return(
-        <React.Fragment>
+        <div className="orders-main">
             <OrdersTitle />
             {data.map(order => (
                 <OrdersPanel 
@@ -15,7 +23,7 @@ const Orders = () => {
                     productName={order.productName}
                     productQty={order.qty} />
             ))}
-        </React.Fragment>
+        </div>
     );
 };
 

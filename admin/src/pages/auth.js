@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Paper,
     Typography,
@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import Link from '../components/Link';
+import axios from 'axios';
 
 const FormDivider = styled(Divider)({
     width: '100%',
@@ -16,6 +17,18 @@ const FormDivider = styled(Divider)({
 })
 
 const Auth = (props) => {
+    const [orders, setOrders] = useState();
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/orders')
+            .then(data => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [])
+
     const { title } = props;
     return(
         <React.Fragment>
