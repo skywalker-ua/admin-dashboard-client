@@ -18,6 +18,8 @@ const OrdersTitle = () => {
                 <Typography className="order-date">Дата</Typography>
                 <Typography className="product-img"></Typography>
                 <Typography className="product-qty">К-ть</Typography>
+                <Typography className="product-total__price">Сума</Typography>
+                <Typography className="product-status">Cтатус</Typography>
             </div>
         </OrdersTitlePaper>
     )

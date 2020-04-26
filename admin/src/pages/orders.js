@@ -21,7 +21,8 @@ const Orders = () => {
                     orderDate={order.date}
                     productImage={order.productImgUrl}
                     productName={order.productName}
-                    productQty={order.qty} />
+                    productQty={order.qty}
+                    productSum={order.sum} />
             ))}
         </div>
     );

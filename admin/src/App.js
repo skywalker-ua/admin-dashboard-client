@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Auth from './pages/auth';
 import Orders from './pages/orders';
+import Products from './pages/products';
 import './styles.css';
 import './App.css';
 
@@ -26,6 +27,9 @@ const App = () => {
           </Route>
           <Route path="/orders">
             <Orders />
+          </Route>
+          <Route path="/products">
+            <Products />
           </Route>
         </Switch>
     </Layout>
