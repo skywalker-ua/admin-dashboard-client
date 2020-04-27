@@ -1,12 +1,14 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import Input from '../components/Input';
 import PageSurface from '../components/PageSurface';
+import axios from 'axios';
 import { Button } from '@material-ui/core';
 
 const ProductCreation = () => {
+
     // Create outsourced hook!!
     const [formValue, setFormValue] = useReducer(
-        (state, newState) => ({ ...state, ...newState}),
+        (formValue, newState) => ({ ...formValue, ...newState}),
         {
             id: '',
             imgUrl: '',
@@ -17,9 +19,15 @@ const ProductCreation = () => {
         }
     );
 
+
     const formSubmitHandler = e => {
         e.preventDefault();
-        console.log(formValue)
+        axios.post('http://localhost:5000/products/create',
+        {
+            product: JSON.stringify(formValue)
+        })
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
     }
 
     const handleInputChange = e => {

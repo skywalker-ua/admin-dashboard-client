@@ -5,9 +5,12 @@ const router = express.Router();
 
 router.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*')
     next();
 })
 router.get('/', adminController.getHome);
 router.get('/orders', adminController.getOrders);
+router.get('/products', adminController.getProducts);
+router.post('/products/create', adminController.postProduct);
 
 module.exports = router;

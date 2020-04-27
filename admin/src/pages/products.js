@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     Table,
     TableBody,
@@ -13,7 +13,8 @@ import {
 import { styled } from '@material-ui/core/styles';
 import NavLink from '../components/Link/index';
 import EditIcon from '@material-ui/icons/Edit';
-import products from '../constants/products.json';
+import axios from 'axios';
+// import products from '../constants/products.json';
 
 const ProductTable = styled(Table)({
     overflow: 'auto'
@@ -33,6 +34,21 @@ const HeaderRows =  [
 ]
 
 const Products = () => {
+    const [loading, isLoading] = useState(null);
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        isLoading(true);
+            let updatedProducts = [...products];
+            axios.get('http://localhost:5000/products')
+            .then(res => {
+                updatedProducts.push(res.data);
+                setProducts(res.data)
+                isLoading(false)
+            })
+            .catch(err => console.log(err));
+        
+    }, [])
+
     return(
         <div className="products-page">
             <Button variant="contained" color="secondary"><NavLink href="/products/new" >Create New</NavLink></Button>
@@ -46,6 +62,7 @@ const Products = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+
                         {products.map(product => (
                             <TableRow key={product.id}>
                                 <TableCell>{product.id}</TableCell>
@@ -57,7 +74,7 @@ const Products = () => {
                                 <TableCell>{product.category}</TableCell>
                                 <TableCell>{product.price}</TableCell>
                                 <TableCell>{product.avb}</TableCell>
-                                <TableCell>{product.qty}</TableCell>
+                                <TableCell>{product.quantity}</TableCell>
                                 <TableCell>{product.sold}</TableCell>
                                 <TableCell>
                                     <IconButton>

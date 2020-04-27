@@ -5,9 +5,10 @@ const adminRoutes = require('./routes/admin');
 
 // Models
 const Order = require('./models/Order');
+const Product = require('./models/Product');
 
 const app = express();
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Routing controller
@@ -20,7 +21,10 @@ sequelize
         console.log('Connected');
     })
     .then(() => {
-        return Order.create();
+        return Order.create()
+    })
+    .then(() => {
+        return Product.create()
     })
     .catch(err => {
         console.log(err);
