@@ -20,7 +20,7 @@ const HeaderText = styled(Typography)({
 const Header = () => {
     return(
         <React.Fragment>
-            <HeaderBar elevation={2}>
+            <HeaderBar elevation={1}>
                 <Toolbar>
                     <HeaderText variant="h4" color="primary">
                         <Link href="/">Admin</Link>

@@ -20,6 +20,17 @@
 .form-paper {
     width: 300px;
 }
+.product-creation__form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.products-page {
+    width: 100%;
+}
+.products-page Button {
+    margin-bottom: 12px;
+}
 
 @media (max-width: 846px) {
     .sidebar {

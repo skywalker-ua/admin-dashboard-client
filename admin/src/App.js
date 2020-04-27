@@ -8,6 +8,8 @@ import {
 import Auth from './pages/auth';
 import Orders from './pages/orders';
 import Products from './pages/products';
+import ProductEdit from './pages/product-edit';
+import ProductCreation from './pages/product-creation';
 import './styles.css';
 import './App.css';
 
@@ -28,8 +30,14 @@ const App = () => {
           <Route path="/orders">
             <Orders />
           </Route>
-          <Route path="/products">
+          <Route exact path="/products">
             <Products />
+          </Route>
+          <Route path="/products/new">
+            <ProductCreation />
+          </Route>
+          <Route path="/products/:productId">
+            <ProductEdit />
           </Route>
         </Switch>
     </Layout>

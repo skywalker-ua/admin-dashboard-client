@@ -1,0 +1,13 @@
+.page-surface {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;   
+}
+
+.page-surface__content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
