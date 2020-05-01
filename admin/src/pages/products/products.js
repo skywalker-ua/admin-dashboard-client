@@ -11,7 +11,8 @@ import {
     Button
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
-import NavLink from '../components/Link/index';
+import NavLink from '../../components/Link/index';
+import Spinner from '../../components/Spinner';
 import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
 // import products from '../constants/products.json';
@@ -34,23 +35,22 @@ const HeaderRows =  [
 ]
 
 const Products = () => {
-    const [loading, isLoading] = useState(null);
+    const [loading, isLoading] = useState(true);
     const [products, setProducts] = useState([]);
     useEffect(() => {
         isLoading(true);
-            let updatedProducts = [...products];
             axios.get('http://localhost:5000/products')
             .then(res => {
-                updatedProducts.push(res.data);
                 setProducts(res.data)
                 isLoading(false)
             })
             .catch(err => console.log(err));
-        
     }, [])
 
     return(
         <div className="products-page">
+            {loading ? <Spinner/> : 
+            <React.Fragment>
             <Button variant="contained" color="secondary"><NavLink href="/products/new" >Create New</NavLink></Button>
             <TableContainer component={Paper} >
                 <ProductTable size="small" stickyHeader>
@@ -61,8 +61,8 @@ const Products = () => {
                             ))}
                         </TableRow>
                     </TableHead>
+                   
                     <TableBody>
-
                         {products.map(product => (
                             <TableRow key={product.id}>
                                 <TableCell>{product.id}</TableCell>
@@ -88,6 +88,8 @@ const Products = () => {
                     </TableBody>
                 </ProductTable>
             </TableContainer>
+            </React.Fragment>
+            }
         </div>
     );
 };

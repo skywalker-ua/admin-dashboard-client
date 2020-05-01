@@ -4,8 +4,8 @@ const sequelize = require('./util/database');
 const adminRoutes = require('./routes/admin');
 
 // Models
-const Order = require('./models/Order');
-const Product = require('./models/Product');
+// const Order = require('./models/Order');
+// const Product = require('./models/Product');
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,15 +16,9 @@ app.use(adminRoutes);
 
 //Connect to MySQL database
 sequelize   
-    .sync({ force: true })
+    .sync()
     .then(result => {
         console.log('Connected');
-    })
-    .then(() => {
-        return Order.create()
-    })
-    .then(() => {
-        return Product.create()
     })
     .catch(err => {
         console.log(err);

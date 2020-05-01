@@ -7,6 +7,15 @@
     width: 100%;
     margin: 5px 0 15px 0;
 }
+.spinner-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.product-image {
+    max-height: 100px;
+}
 
 .login-form Button {
     margin-top: 9px;
@@ -20,7 +29,7 @@
 .form-paper {
     width: 300px;
 }
-.product-creation__form {
+.product-creation__form, .product-edit__form {
     display: flex;
     flex-flow: column nowrap;
 }

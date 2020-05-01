@@ -38,12 +38,15 @@ exports.postProduct = (req, res, next) => {
     let product = JSON.parse(productData);
     Product.findOrCreate({ where: {
         id: product.id,
-        imgUrl: product.imgUrl,
+        name: product.name,
         sku: product.sku,
-        category: product.category,
-        price: product.price,
-        quantity: product.qty
-    }})
+    },
+        defaults: {
+            quantity: product.qty,
+            category: product.category,
+            imgUrl: product.imgUrl,
+            price: product.price
+        }})
         .then(([user, created]) => {
             console.log(user)
             if (created) {

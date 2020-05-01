@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 import Auth from './pages/auth';
 import Orders from './pages/orders';
-import Products from './pages/products';
-import ProductEdit from './pages/product-edit';
-import ProductCreation from './pages/product-creation';
+import Products from './pages/products/products';
+import ProductEdit from './pages/products/product-edit';
+import ProductCreation from './pages/products/product-creation';
 import './styles.css';
 import './App.css';
 

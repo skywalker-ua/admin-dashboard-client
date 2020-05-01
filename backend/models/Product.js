@@ -9,9 +9,12 @@ const Product = sequelize.define('product', {
         allowNull: false,
         primaryKey: true
     },
+    name: Sequelize.STRING,
     imgUrl: Sequelize.STRING,
     sku: Sequelize.STRING,
     category: Sequelize.STRING,
+    availability: Sequelize.BOOLEAN,
+    sold: Sequelize.STRING,
     price: Sequelize.INTEGER,
     quantity: Sequelize.INTEGER
 });
