@@ -1,13 +1,12 @@
 .layout-children {
     display: flex;
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
+    width: 100%;
 }
 
 .layout-content {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
-    width: calc(100vw - 240px);
+    width: 100%;
 }

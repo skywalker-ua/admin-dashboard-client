@@ -68,3 +68,20 @@ exports.postProduct = (req, res, next) => {
         .catch(err => console.log(err));
     res.send('Product created')
 }
+
+exports.deleteProduct = (req, res, next) => {
+    const prodId = req.body.data.prodId;
+    console.log(typeof(prodId))
+    Product.destroy({
+        where: {
+            id: prodId
+        }
+    })
+    .then(result => {
+        console.log('Product was deleted');
+        res.send({id: prodId});
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

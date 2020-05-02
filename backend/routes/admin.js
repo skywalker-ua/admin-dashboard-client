@@ -12,6 +12,7 @@ router.get('/', adminController.getHome);
 router.get('/orders', adminController.getOrders);
 router.get('/products', adminController.getProducts);
 router.get('/products/:productId', adminController.getProduct);
+router.post('/products/delete', adminController.deleteProduct);
 router.post('/products/create', adminController.postProduct);
 
 module.exports = router;

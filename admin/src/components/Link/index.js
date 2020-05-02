@@ -7,9 +7,9 @@ import './NavLink.css';
 
 const Link = ({children, href}) => {
     return(
-            <NavLink className="nav-link" to={href}>
-                {children}
-            </NavLink>
+        <NavLink className="nav-link" to={href}>
+            {children}
+        </NavLink>
     );
 }
 

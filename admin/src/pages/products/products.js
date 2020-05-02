@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { 
     Table,
     TableBody,
@@ -8,15 +8,21 @@ import {
     TableHead,
     TableRow,
     IconButton,
-    Button
+    Button,
+    Popover,
+    List,
+    ListItem,
+    ListItemText,
+    ListItemIcon
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import NavLink from '../../components/Link/index';
-import Spinner from '../../components/Spinner';
-import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
-import useHttpRequest from '../../hooks/http';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import useHttpRequest from '../../hooks/http';
 
 const ProductTable = styled(Table)({
     overflow: 'auto'
@@ -36,8 +42,32 @@ const HeaderRows =  [
 ]
 
 const Products = () => {
-    const products = useHttpRequest('http://localhost:5000/products', 'GET');
+    let products = useHttpRequest('http://localhost:5000/products', 'GET');
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [productId, setProductId] = useState(null);
+    
+    const handleClose = () => {
+        setAnchorEl(null);
+    }
+    const handleClick = (event, id) => {
+        setProductId(id);
+        setAnchorEl(event.currentTarget);
+    }
+    const handleIconClick = (event, action) => {
+        if (action === 'delete') {
+            axios.post(`http://localhost:5000/products/delete`,
+             {data: {prodId: productId } } )
+             .then(res => {
+                 
+             })
+             .catch(err => {
+                 console.log(err);
+             })
+        }
+        setAnchorEl(null);
+    }
+    const open = Boolean(anchorEl);
     return(
         <div className="products-page">
             <React.Fragment>
@@ -67,10 +97,8 @@ const Products = () => {
                                 <TableCell>{product.quantity}</TableCell>
                                 <TableCell>{product.sold}</TableCell>
                                 <TableCell>
-                                    <IconButton>
-                                        <NavLink href={'/products/' + product.id}>
-                                            <EditIcon />
-                                        </NavLink>
+                                    <IconButton onClick={(event) => handleClick(event, product.id)}>
+                                        <MoreVertIcon />
                                     </IconButton>
                                 </TableCell>
                             </TableRow>
@@ -78,6 +106,36 @@ const Products = () => {
                     </TableBody>
                 </ProductTable>
             </TableContainer>
+            <Popover
+                id="edit-menu"
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}>
+                <List dense>
+                    <NavLink href={'/products/' + productId}>
+                        <ListItem button onClick={handleIconClick} >
+                            <ListItemIcon  >
+                                <EditIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Edit" />
+                        </ListItem>
+                    </NavLink>
+                    <ListItem button onClick={(event) => handleIconClick(event, 'delete')} >
+                        <ListItemIcon >
+                            <DeleteIcon color="secondary" />
+                        </ListItemIcon>
+                        <ListItemText primary="Delete" />
+                    </ListItem>
+                </List>
+             </Popover>
             </React.Fragment>
         </div>
     );
