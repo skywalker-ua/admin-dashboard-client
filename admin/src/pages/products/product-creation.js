@@ -23,7 +23,6 @@ const ProductCreation = () => {
     let history = useHistory()
 
     const formSubmitHandler = e => {
-        
         e.preventDefault();
         axios.post('http://localhost:5000/products/create',
         {
@@ -54,7 +53,7 @@ const ProductCreation = () => {
                 <Input name="category" onChange={handleInputChange} value={formValue.category} label="Category" variant="outlined" type="text" />
                 <Input name="price" onChange={handleInputChange} value={formValue.price} label="Price" variant="outlined" type="number" />
                 <Input name="qty" onChange={handleInputChange} value={formValue.qty} label="Quantity" variant="outlined" type="number" />
-                <Button type="submit" color="primary" variant="contained">Create</Button>
+                <Button className="form-button" type="submit" color="primary" variant="contained">Create</Button>
             </form>
         </PageSurface>
     );

@@ -6,7 +6,7 @@ import {
 const Input = (props) => {
     return(
         <div className="creation-form__input">
-            <TextField  {...props} />
+            <TextField style={{width: '80%'}}  {...props} />
         </div>
     );
 };

@@ -5,7 +5,7 @@ import {
 const Spinner = ( ) => {
     return(
         <div className="spinner-content">
-            <CircularProgress   /> 
+            <CircularProgress size={70}  /> 
         </div>
     );
 }

@@ -11,6 +11,7 @@ router.use((req, res, next) => {
 router.get('/', adminController.getHome);
 router.get('/orders', adminController.getOrders);
 router.get('/products', adminController.getProducts);
+router.get('/products/:productId', adminController.getProduct);
 router.post('/products/create', adminController.postProduct);
 
 module.exports = router;

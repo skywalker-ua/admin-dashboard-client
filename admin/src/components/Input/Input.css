@@ -1,3 +1,6 @@
 .creation-form__input {
     margin-bottom: 15px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
 }

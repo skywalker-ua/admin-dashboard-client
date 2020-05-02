@@ -33,6 +33,18 @@ exports.getProducts = (req, res, next) => {
         })
 }
 
+exports.getProduct = (req, res, next) => {
+    const prodId = req.params.productId;
+    Product.findByPk(prodId)
+        .then(response => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(response)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
 exports.postProduct = (req, res, next) => {
     let productData = req.body.product;
     let product = JSON.parse(productData);

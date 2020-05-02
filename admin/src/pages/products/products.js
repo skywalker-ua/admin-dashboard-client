@@ -15,7 +15,8 @@ import NavLink from '../../components/Link/index';
 import Spinner from '../../components/Spinner';
 import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
-// import products from '../constants/products.json';
+import useHttpRequest from '../../hooks/http';
+
 
 const ProductTable = styled(Table)({
     overflow: 'auto'
@@ -35,21 +36,10 @@ const HeaderRows =  [
 ]
 
 const Products = () => {
-    const [loading, isLoading] = useState(true);
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        isLoading(true);
-            axios.get('http://localhost:5000/products')
-            .then(res => {
-                setProducts(res.data)
-                isLoading(false)
-            })
-            .catch(err => console.log(err));
-    }, [])
+    const products = useHttpRequest('http://localhost:5000/products', 'GET');
 
     return(
         <div className="products-page">
-            {loading ? <Spinner/> : 
             <React.Fragment>
             <Button variant="contained" color="secondary"><NavLink href="/products/new" >Create New</NavLink></Button>
             <TableContainer component={Paper} >
@@ -89,7 +79,6 @@ const Products = () => {
                 </ProductTable>
             </TableContainer>
             </React.Fragment>
-            }
         </div>
     );
 };

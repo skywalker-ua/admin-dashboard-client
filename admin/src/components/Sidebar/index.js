@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Paper,
     List,
@@ -27,14 +27,13 @@ const menuRows = [
 const Sidebar = () => {
 
     let location = useLocation();
-    let path = location.pathname;
-    let pathId;
+    let path = useRef(location.pathname);
 
     const [ selected, setSelectedId ] = useState({
         id: 0
     })
 
-    const handleSelected = (event, id, link) => {
+    const handleSelected = (event, id) => {
         setSelectedId({
             id: id
         })
@@ -42,14 +41,15 @@ const Sidebar = () => {
 
     useEffect(() => {
         menuRows.map(row => {
-            if (row.link === path) {
-                pathId = row.id;
-                setSelectedId({
-                    id: pathId
-                })
+            if (row.link === path.current) {
+                return(
+                    setSelectedId({
+                        id: row.id
+                    })
+                );  
             }
         });
-    }, [pathId])
+    }, [])
 
     return(
         <nav className="sidebar" >
