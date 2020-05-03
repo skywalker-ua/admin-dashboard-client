@@ -17,6 +17,7 @@ const Orders = () => {
             <OrdersTitle />
             {data.map(order => (
                 <OrdersPanel 
+                    key={order.id * Math.random()}
                     orderNumber={order.orderId} 
                     orderDate={order.date}
                     productImage={order.productImgUrl}

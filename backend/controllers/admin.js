@@ -71,7 +71,6 @@ exports.postProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
     const prodId = req.body.data.prodId;
-    console.log(typeof(prodId))
     Product.destroy({
         where: {
             id: prodId
@@ -84,4 +83,22 @@ exports.deleteProduct = (req, res, next) => {
     .catch(err => {
         console.log(err);
     })
+}
+
+exports.updateProduct = (req, res, next) => {
+    const prodId = req.body.data.formData.id;
+    const formData = req.body.data.formData;
+    Product.update({
+        id: formData.id,
+        name: formData.name,
+        imgUrl: formData.imgUrl,
+        sku: formData.sku,
+        category: formData.category,
+        price: formData.price,
+        quantity: formData.qty
+    }, {where: { id: prodId } } )
+    .then(() => {
+        res.send({edited: true});
+    })
+    .catch(err => console.log(err));
 }

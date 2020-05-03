@@ -1,32 +1,16 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import {
     Button
 } from '@material-ui/core';
 import Input from '../../components/Input';
 import PageSurface from '../../components/PageSurface';
-import useHttpRequest from '../../hooks/http';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const ProductEdit = (props) => {
-
+    let history = useHistory();
     const { productId } = useParams();
-
-    const productValues = useHttpRequest(`http://localhost:5000/products/${productId}`, 'GET');
-
-    useEffect(() => {
-        console.log(productValues);
-        if (productValues) {
-            setFormValue({
-                id: productValues.id,
-                name: productValues.name,
-                imgUrl: productValues.imgUrl,
-                sku: productValues.sku,
-                category: productValues.category,
-                price: productValues.price,
-                qty: productValues.quantity
-            })
-        }
-    }, [productValues])
+    const [productValues, setProduct] = useState([])
 
     const [formValue, setFormValue] = useReducer(
         (formValue, newState) => ({ ...formValue, ...newState}),
@@ -40,6 +24,47 @@ const ProductEdit = (props) => {
             qty: ''
         }
     );
+
+    async function fetchProductData() {
+        await axios.get(`http://localhost:5000/products/${productId}`)
+            .then(res => {
+                setProduct(res.data);
+            })
+            .catch(err => console.log(err));
+    }
+
+    function updateProductData() {
+        axios.patch(`http://localhost:5000/products/update`,
+        { data: { formData: formValue } } )
+            .then(res => {
+                if (res.data.edited) {
+                    history.push('/products');
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        fetchProductData();
+    }, [])
+
+    useEffect(() => {
+        setFormValue({
+            id: productValues.id,
+            name: productValues.name,
+            imgUrl: productValues.imgUrl,
+            sku: productValues.sku,
+            category: productValues.category,
+            price: productValues.price,
+            qty: productValues.quantity
+        })
+    }, [productValues])
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        updateProductData();
+    }
+
     const handleInputChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -50,7 +75,7 @@ const ProductEdit = (props) => {
 
     return(
         <PageSurface title={'Edit product'}>
-            <form className="product-edit__form" >
+            <form className="product-edit__form" onSubmit={handleFormSubmit} >
                 <Input name="id" onChange={handleInputChange} value={formValue.id} label="ID" variant="outlined" type="number" />
                 <Input name="name" onChange={handleInputChange} value={formValue.name} label="Name" variant="outlined" type="text" />
                 <Input name="imgUrl" onChange={handleInputChange} value={formValue.imgUrl} label="Image Url" variant="outlined" type="text" />

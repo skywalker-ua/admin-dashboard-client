@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     Table,
     TableBody,
@@ -17,12 +17,11 @@ import {
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import NavLink from '../../components/Link/index';
+import Spinner from '../../components/Spinner';
 import axios from 'axios';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-import useHttpRequest from '../../hooks/http';
 
 const ProductTable = styled(Table)({
     overflow: 'auto'
@@ -42,7 +41,25 @@ const HeaderRows =  [
 ]
 
 const Products = () => {
-    let products = useHttpRequest('http://localhost:5000/products', 'GET');
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading ] = useState(false);
+    
+    async function fetchProductData() {
+        setLoading(true);
+        await axios.get('http://localhost:5000/products')
+            .then(res => {
+                setLoading(false);
+                setProducts(res.data);
+            })
+            .catch(err => {
+                setLoading(false);
+                console.log(err)
+            });
+    }
+
+    useEffect(() => {
+        fetchProductData();
+    }, [])
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [productId, setProductId] = useState(null);
@@ -57,19 +74,18 @@ const Products = () => {
     const handleIconClick = (event, action) => {
         if (action === 'delete') {
             axios.post(`http://localhost:5000/products/delete`,
-             {data: {prodId: productId } } )
-             .then(res => {
-                 
-             })
-             .catch(err => {
-                 console.log(err);
-             })
+            { data: { prodId: productId } })
+                .then(res => {
+                    fetchProductData();
+                })
+                .catch(err => console.log(err));
         }
         setAnchorEl(null);
     }
     const open = Boolean(anchorEl);
     return(
         <div className="products-page">
+        {loading ? <Spinner /> :
             <React.Fragment>
             <Button variant="contained" color="secondary"><NavLink href="/products/new" >Create New</NavLink></Button>
             <TableContainer component={Paper} >
@@ -137,6 +153,7 @@ const Products = () => {
                 </List>
              </Popover>
             </React.Fragment>
+            }
         </div>
     );
 };
