@@ -25,14 +25,18 @@
     width: 40%;
 }
 
+.login-form .auth-input {
+    width: 80%;
+}
+
 .orders-main {
     width: 100%;
-    
 }
 
 .form-paper {
-    width: 300px;
+    width: 400px;
 }
+
 .product-creation__form, .product-edit__form {
     display: flex;
     width: 100%;

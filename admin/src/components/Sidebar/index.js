@@ -59,7 +59,7 @@ const Sidebar = () => {
                     <NavLink href={row.link} key={row.id}>
                         <ListItem 
                          button 
-                         selected={selected.id === row.id} 
+                         selected={selected.id === row.id}
                          onClick={(event) => handleSelected(event, row.id)} >
                             <ListItemIcon>{row.icon}</ListItemIcon>
                             <ListItemText key={row.id} primary={row.title} />

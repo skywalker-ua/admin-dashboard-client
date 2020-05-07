@@ -76,7 +76,7 @@ const ProductEdit = (props) => {
     return(
         <PageSurface title={'Edit product'}>
             <form className="product-edit__form" onSubmit={handleFormSubmit} >
-                <Input name="id" onChange={handleInputChange} value={formValue.id} label="ID" variant="outlined" type="number" />
+                <Input label="ID" value={formValue.id} onChange={handleInputChange} name="id" variant="outlined" type="number" />
                 <Input name="name" onChange={handleInputChange} value={formValue.name} label="Name" variant="outlined" type="text" />
                 <Input name="imgUrl" onChange={handleInputChange} value={formValue.imgUrl} label="Image Url" variant="outlined" type="text" />
                 <Input name="sku" onChange={handleInputChange} value={formValue.sku} label="SKU" variant="outlined" type="number" />
