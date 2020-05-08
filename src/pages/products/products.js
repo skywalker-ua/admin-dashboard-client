@@ -46,7 +46,7 @@ const Products = () => {
     
     async function fetchProductData() {
         setLoading(true);
-        await axios.get('http://localhost:5000/products')
+        await axios.get('/products')
             .then(res => {
                 setLoading(false);
                 setProducts(res.data);
