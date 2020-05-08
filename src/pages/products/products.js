@@ -46,7 +46,7 @@ const Products = () => {
     
     async function fetchProductData() {
         setLoading(true);
-        await axios.get('/products')
+        await axios.get('https://damp-plains-96902.herokuapp.com/products')
             .then(res => {
                 setLoading(false);
                 setProducts(res.data);
