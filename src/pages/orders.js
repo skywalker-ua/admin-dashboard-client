@@ -14,7 +14,7 @@ const Orders = () => {
 
     return(
         <div className="orders-main">
-            <OrdersTitle />
+            {/* <OrdersTitle />
             {data.map(order => (
                 <OrdersPanel 
                     key={order.id * Math.random()}
@@ -24,7 +24,7 @@ const Orders = () => {
                     productName={order.productName}
                     productQty={order.qty}
                     productSum={order.sum} />
-            ))}
+            ))} */}
         </div>
     );
 };
