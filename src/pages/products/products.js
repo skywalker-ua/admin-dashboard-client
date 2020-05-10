@@ -73,7 +73,7 @@ const Products = () => {
     }
     const handleIconClick = (event, action) => {
         if (action === 'delete') {
-            axios.post(`http://localhost:5000/products/delete`,
+            axios.post(`https://damp-plains-96902.herokuapp.com/products/delete`,
             { data: { prodId: productId } })
                 .then(res => {
                     fetchProductData();

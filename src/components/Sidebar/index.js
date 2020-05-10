@@ -4,7 +4,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    Drawer
 } from '@material-ui/core';
 import StoreIcon from '@material-ui/icons/Store';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
@@ -13,27 +14,29 @@ import { useLocation } from 'react-router-dom';
 import NavLink from '../../components/Link';
 import './Sidebar.css';
 
-const SidebarCard = styled(Paper)({
-    width: '200px',
-    height: '100vh',
-    position: 'fixed'
-})
+const MenuDrawer = styled(Drawer)({
+    
+});
+
+const MenuList = styled(List)({
+    width: '240px'
+});
 
 const menuRows = [
     {id: 1, 'title': 'Orders', 'link': '/orders', icon: <AccountBalanceIcon />},
     {id: 2, 'title': 'Products', 'link': '/products', icon: <StoreIcon />}
 ]
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 
     let location = useLocation();
     let path = useRef(location.pathname);
-
     const [ selected, setSelectedId ] = useState({
         id: 0
     })
 
     const handleSelected = (event, id) => {
+        props.onClose();
         setSelectedId({
             id: id
         })
@@ -52,24 +55,24 @@ const Sidebar = () => {
     }, [])
 
     return(
-        <nav className="sidebar" >
-            <SidebarCard square>
-                <List component="nav" aria-label="navigation icons">
+    <MenuDrawer
+        open={props.open}
+        elevation={1}
+        onClose={props.onClose}>
+        <MenuList component="nav" aria-label="navigation icons">
                 {menuRows.map(row => (
-                    <NavLink href={row.link} key={row.id}>
-                        <ListItem 
-                         button 
-                         selected={selected.id === row.id}
-                         onClick={(event) => handleSelected(event, row.id)} >
-                            <ListItemIcon>{row.icon}</ListItemIcon>
-                            <ListItemText key={row.id} primary={row.title} />
-                        </ListItem>
-                    </NavLink>
+                     <NavLink href={row.link} key={row.id}>
+                         <ListItem 
+                          button 
+                          selected={selected.id === row.id}
+                          onClick={(event) => handleSelected(event, row.id)} >
+                             <ListItemIcon>{row.icon}</ListItemIcon>
+                             <ListItemText key={row.id} primary={row.title} />
+                         </ListItem>
+                     </NavLink>
                 ))}
-                </List>
-            </SidebarCard>
-        </nav>
-    );
-};
+        </MenuList>
+    </MenuDrawer>
+)};
 
 export default Sidebar;
