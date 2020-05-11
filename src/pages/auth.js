@@ -16,7 +16,6 @@ const FormDivider = styled(Divider)({
     marginTop: '10px',
     marginBottom: '10px'
 })
-
 const Auth = (props) => {
     const [formValid, setFormValid] = useState(true);
     const { handleSubmit, register, errors, watch, formState } = useForm({
@@ -24,8 +23,25 @@ const Auth = (props) => {
     });
     const { isValid } = formState;
 
-    const formSubmit = (data, errors) => {
-        console.log(data);
+    const formSubmit = (data, event) => {
+        event.preventDefault();
+        data.id = 2;
+        if (title === 'Login') {
+            axios.post('https://damp-plains-96902.herokuapp.com/products/login',
+                { data: { formData: data } } )
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => console.log(err));
+        }
+        if (title === 'Sign Up') {
+            axios.post('https://damp-plains-96902.herokuapp.com/products/signup',
+                { data: { formData: data} } )
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     const { title } = props;
@@ -80,7 +96,7 @@ const Auth = (props) => {
                                 })}
                                 className="auth-input"
                                 name="name"
-                                type="texx"
+                                type="text"
                                 label="Name"
                                 helperText={errors.name?.message}
                             />
