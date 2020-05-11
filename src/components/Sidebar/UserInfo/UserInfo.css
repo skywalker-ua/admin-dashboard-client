@@ -1,0 +1,14 @@
+.user-profile-sidebar {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+    background-color: #1a73e8;
+}
+
+.user-profile__username {
+    color: white;
+}
+
+.user-profile__email {
+    color: rgb(228, 227, 227);
+}

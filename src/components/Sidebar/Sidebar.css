@@ -3,3 +3,7 @@
     flex-flow: column nowrap;
     width: 250px;
 }
+
+.sidebar-menu-items {
+    flex-grow: 1;
+}
