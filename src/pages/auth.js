@@ -24,10 +24,10 @@ const Auth = (props) => {
     const { isValid } = formState;
 
     const formSubmit = (data, event) => {
+
         event.preventDefault();
-        data.id = 2;
         if (title === 'Login') {
-            axios.post('https://damp-plains-96902.herokuapp.com/products/login',
+            axios.post('http://localhost:5000/login',
                 { data: { formData: data } } )
                 .then(res => {
                     console.log(res);
@@ -35,7 +35,8 @@ const Auth = (props) => {
                 .catch(err => console.log(err));
         }
         if (title === 'Sign Up') {
-            axios.post('https://damp-plains-96902.herokuapp.com/products/signup',
+            console.log(data)
+            axios.post('http://localhost:5000/signup',
                 { data: { formData: data} } )
                 .then(res => {
                     console.log(res);
