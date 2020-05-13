@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     Paper,
     Typography,
@@ -8,7 +8,9 @@ import {
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import Link from '../components/Link';
+import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import AuthContext from '../context/auth-context';
 import axios from 'axios';
 
 const FormDivider = styled(Divider)({
@@ -18,19 +20,22 @@ const FormDivider = styled(Divider)({
 })
 const Auth = (props) => {
     const [formValid, setFormValid] = useState(true);
+    const { authenticated, login, setUser, user } = useContext(AuthContext);
     const { handleSubmit, register, errors, watch, formState } = useForm({
         mode: 'onChange'
     });
     const { isValid } = formState;
-
-    const formSubmit = (data, event) => {
-
-        event.preventDefault();
+    const history = useHistory();
+    
+    const formSubmit = (data) => {
         if (title === 'Login') {
             axios.post('http://localhost:5000/login',
-                { data: { formData: data } } )
+                { data: { formData: data }} )
                 .then(res => {
-                    console.log(res);
+                        const userProfile = res.data.user;
+                        setUser(userProfile)
+                        login();
+                        history.push('/');
                 })
                 .catch(err => console.log(err));
         }
@@ -39,7 +44,7 @@ const Auth = (props) => {
             axios.post('http://localhost:5000/signup',
                 { data: { formData: data} } )
                 .then(res => {
-                    console.log(res);
+                    console.log(res)
                 })
                 .catch(err => console.log(err));
         }
@@ -47,7 +52,6 @@ const Auth = (props) => {
 
     const { title } = props;
     return(
-        <React.Fragment>
             <Paper className="form-paper">
                 <form className="login-form" onSubmit={handleSubmit(formSubmit)}>
                     <Typography variant="h5">{title}</Typography>
@@ -174,8 +178,7 @@ const Auth = (props) => {
                     </Typography>
                 </form>
             </Paper>
-        </React.Fragment>
-    );
+        )
 };
 
 export default Auth;

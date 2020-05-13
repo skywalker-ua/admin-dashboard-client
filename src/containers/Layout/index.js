@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
+import AuthContext from '../../context/auth-context';
 import './Layout.css';
 
 const Layout = ({ children }) => {
@@ -12,10 +13,18 @@ const Layout = ({ children }) => {
         setDrawerState(false)
     }
     return(
+        
         <div className="main-layout">
             <Header onClick={onClick} />
             <main className="layout-children">
-            <Sidebar open={drawerState} onClose={onClose} />
+            <AuthContext.Consumer>
+            {context => context.authenticated ? 
+            <>
+            <Sidebar user={context.user} open={drawerState} onClose={onClose} />
+            </>
+            : null }
+            </AuthContext.Consumer>
+            
                 <div className="layout-content">
                     {children}
                 </div>

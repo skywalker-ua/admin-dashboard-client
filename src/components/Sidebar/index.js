@@ -23,7 +23,7 @@ const MenuDrawer = styled(Drawer)({
 
 const MenuList = styled(List)({
     width: '240px',
-    height: '80%',
+    height: '90%',
     display: 'flex',
     flexFlow: 'column nowrap'
 });
@@ -65,7 +65,7 @@ const Sidebar = (props) => {
         open={props.open}
         elevation={1}
         onClose={props.onClose}>
-        <UserInfo />
+        <UserInfo user={props.user} />
         <Divider />
         <MenuList component="nav" aria-label="navigation icons">
                 <div className="sidebar-menu-items">
