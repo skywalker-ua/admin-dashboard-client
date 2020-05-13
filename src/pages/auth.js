@@ -29,7 +29,7 @@ const Auth = (props) => {
     
     const formSubmit = (data) => {
         if (title === 'Login') {
-            axios.post('http://localhost:5000/login',
+            axios.post('https://damp-plains-96902.herokuapp.com/login',
                 { data: { formData: data }} )
                 .then(res => {
                         const userProfile = res.data.user;
@@ -41,7 +41,7 @@ const Auth = (props) => {
         }
         if (title === 'Sign Up') {
             console.log(data)
-            axios.post('http://localhost:5000/signup',
+            axios.post('https://damp-plains-96902.herokuapp.com/signup',
                 { data: { formData: data} } )
                 .then(res => {
                     console.log(res)
