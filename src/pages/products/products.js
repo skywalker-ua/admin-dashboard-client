@@ -45,8 +45,14 @@ const Products = () => {
     const [loading, setLoading ] = useState(false);
     
     async function fetchProductData() {
+        const token = localStorage.getItem('token');
         setLoading(true);
-        await axios.get('https://damp-plains-96902.herokuapp.com/products')
+        await axios.get('http://localhost:5000/products',
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => {
                 setLoading(false);
                 setProducts(res.data);

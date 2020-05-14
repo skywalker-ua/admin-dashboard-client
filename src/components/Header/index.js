@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { styled } from '@material-ui/core/styles';
 import Link from '../Link';
 import MenuIcon from '@material-ui/icons/Menu';
+import AuthContext from '../../context/auth-context';
 
 import {
     AppBar,
@@ -21,14 +22,15 @@ const HeaderText = styled(Typography)({
 })
 
 const Header = (props) => {
-   
+   const { authenticated } = useContext(AuthContext);
     return(
         <React.Fragment>
             <HeaderBar elevation={1}>
                 <Toolbar>
+                    {authenticated  ?
                     <IconButton style={{marginRight: '10px'}} onClick={props.onClick}>
                         <MenuIcon />
-                    </IconButton>
+                    </IconButton> : <></>}
                     <HeaderText variant="h4" color="primary">
                         <Link href="/">Admin</Link>
                     </HeaderText>

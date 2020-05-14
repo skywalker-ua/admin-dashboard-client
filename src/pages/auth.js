@@ -29,11 +29,14 @@ const Auth = (props) => {
     
     const formSubmit = (data) => {
         if (title === 'Login') {
-            axios.post('https://damp-plains-96902.herokuapp.com/login',
+            // axios.post('https://damp-plains-96902.herokuapp.com/login',
+            axios.post('http://localhost:5000/login',
                 { data: { formData: data }} )
                 .then(res => {
-                        const userProfile = res.data.user;
-                        setUser(userProfile)
+                        // const userProfile = res.data.user;
+                        // setUser(userProfile)
+                        const token = res.data.accessToken;
+                        localStorage.setItem('token', token);
                         login();
                         history.push('/');
                 })
@@ -41,7 +44,8 @@ const Auth = (props) => {
         }
         if (title === 'Sign Up') {
             console.log(data)
-            axios.post('https://damp-plains-96902.herokuapp.com/signup',
+            // axios.post('https://damp-plains-96902.herokuapp.com/signup',
+            axios.post('http://localhost:5000/signup',
                 { data: { formData: data} } )
                 .then(res => {
                     console.log(res)
