@@ -69,10 +69,11 @@ const App = () => {
     }}>
     
     <div className="app-container">
-    <Switch>
+    
     <AuthContext.Consumer>
           {context => context.authenticated ? 
-    <Layout>
+    <Switch>
+      <Layout>
         <Route exact path="/">
           Home
         </Route>
@@ -82,28 +83,30 @@ const App = () => {
         <Route exact path="/products">
           <Products />
         </Route>
-        <Route path="/products/new">
+        <Route exact path="/product/new">
           <ProductCreation />
         </Route>
         <Route path="/products/:productId">
           <ProductEdit />
         </Route> 
-        <Redirect to="/" />
-    </Layout>
-    :
-      <div className="auth-container">
-        <div className="auth-form">
-          <Route path="/login">
-              <Auth title="Login" />
-          </Route>
-          <Route path="/signup">
-            <Auth title="Sign Up" />
-          </Route>
-          <Redirect to="/login" />
-          </div>
-      </div>}
-      </AuthContext.Consumer>
+        
+      </Layout>
     </Switch>
+    :
+      <Switch>
+        <div className="auth-container">
+          <div className="auth-form">
+            <Route path="/login">
+                <Auth title="Login" />
+            </Route>
+            <Route path="/signup">
+              <Auth title="Sign Up" />
+            </Route>
+            </div>
+        </div>
+      </Switch>}
+      </AuthContext.Consumer>
+    
     </div>
     </AuthContext.Provider>
   </Router>

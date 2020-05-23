@@ -93,7 +93,13 @@ const Products = () => {
         <div className="products-page">
         {loading ? <Spinner /> :
             <React.Fragment>
-            <Button variant="contained" color="secondary"><NavLink href="/products/new" >Create New</NavLink></Button>
+            <Button 
+                variant="contained" 
+                color="secondary">
+                <NavLink href="/product/new" >
+                    Create New
+                </NavLink>
+            </Button>
             <TableContainer component={Paper} >
                 <ProductTable size="small" >
                     <TableHead>
