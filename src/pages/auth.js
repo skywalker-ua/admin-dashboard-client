@@ -4,12 +4,14 @@ import {
     Typography,
     TextField,
     Button,
-    Divider
+    Divider,
+    LinearProgress
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import Link from '../components/Link';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useCookies } from 'react-cookie';
 import AuthContext from '../context/auth-context';
 import axios from 'axios';
 
@@ -19,38 +21,48 @@ const FormDivider = styled(Divider)({
     marginBottom: '10px'
 })
 const Auth = (props) => {
-    const [formValid, setFormValid] = useState(true);
-    const { authenticated, login, setUser, user } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
+    const { authenticated, login, setUser, user, token, setToken } = useContext(AuthContext);
     const { handleSubmit, register, errors, watch, formState } = useForm({
         mode: 'onChange'
     });
     const { isValid } = formState;
     const history = useHistory();
-    
+    const [ cookies, setCookie ] = useCookies(['token']);
     const formSubmit = (data) => {
+        setLoading(true);
         if (title === 'Login') {
             // axios.post('https://damp-plains-96902.herokuapp.com/login',
+            
             axios.post('http://localhost:5000/login',
                 { data: { formData: data }} )
                 .then(res => {
-                        // const userProfile = res.data.user;
-                        // setUser(userProfile)
-                        const token = res.data.accessToken;
-                        localStorage.setItem('token', token);
+                        setLoading(false);
+                        const userProfile = res.data.user;
+                        setUser(userProfile)
+                        const authToken = res.data.token;
+                        setCookie('token', authToken, { expires: new Date(Date.now() + 100000000)});
+                        setToken(authToken);
                         login();
                         history.push('/');
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    setLoading(false);
+                    console.log(err);
+                });
         }
         if (title === 'Sign Up') {
-            console.log(data)
             // axios.post('https://damp-plains-96902.herokuapp.com/signup',
             axios.post('http://localhost:5000/signup',
                 { data: { formData: data} } )
                 .then(res => {
-                    console.log(res)
+                    setLoading(false);
+                    history.push('/login');
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    setLoading(false);
+                    console.log(err);
+                });
         }
     }
 
@@ -59,8 +71,8 @@ const Auth = (props) => {
             <Paper className="form-paper">
                 <form className="login-form" onSubmit={handleSubmit(formSubmit)}>
                     <Typography variant="h5">{title}</Typography>
-                    <FormDivider />
-
+                    {loading ? <LinearProgress style={{width: '100%'}} variant="query" />
+                    : <FormDivider />}
                     {/* Inputs */}
                     {/*  Login Inputs */}
                     {title === 'Login' && (

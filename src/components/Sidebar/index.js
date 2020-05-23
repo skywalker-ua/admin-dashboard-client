@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import {
     Paper,
     List,
@@ -13,6 +13,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import { styled } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
+import AuthContext from '../../context/auth-context';
 import NavLink from '../../components/Link';
 import UserInfo from '../Sidebar/UserInfo';
 import './Sidebar.css';
@@ -34,7 +35,7 @@ const menuRows = [
 ]
 
 const Sidebar = (props) => {
-
+    const { logout } = useContext(AuthContext);
     let location = useLocation();
     let path = useRef(location.pathname);
     const [ selected, setSelectedId ] = useState({
@@ -42,6 +43,9 @@ const Sidebar = (props) => {
     })
 
     const handleSelected = (event, id) => {
+        if (id === 3) {
+            return logout();
+        }
         props.onClose();
         setSelectedId({
             id: id

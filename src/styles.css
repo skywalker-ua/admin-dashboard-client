@@ -1,3 +1,16 @@
+.auth-form {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+
+.auth-container {
+    height: 100vh;
+    background-image: url('./assets/alpes.jpg');
+    background-size: 100% 100%;
+}
+
 
 .login-form {
     display: flex;
@@ -8,6 +21,7 @@
     width: 100%;
     margin: 5px 0 15px 0;
 }
+
 .spinner-content {
     display: flex;
     width: 100%;
@@ -36,6 +50,8 @@
 
 .form-paper {
     width: 400px;
+    max-height: 400px;
+    
 }
 
 .product-creation__form, .product-edit__form {
@@ -52,6 +68,14 @@
 .products-page {
     width: 90%;
 }
+
 .products-page Button {
     margin-bottom: 12px;
+}
+
+
+@media (max-width: 600px) {
+    .auth-container {
+        background-image: none;
+    }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { 
     Table,
     TableBody,
@@ -22,6 +22,7 @@ import axios from 'axios';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import AuthContext from '../../context/auth-context';
 
 const ProductTable = styled(Table)({
     overflow: 'auto'
@@ -43,9 +44,8 @@ const HeaderRows =  [
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading ] = useState(false);
-    
+    const { token } = useContext(AuthContext);
     async function fetchProductData() {
-        const token = localStorage.getItem('token');
         setLoading(true);
         await axios.get('http://localhost:5000/products',
         {
@@ -95,7 +95,7 @@ const Products = () => {
             <React.Fragment>
             <Button variant="contained" color="secondary"><NavLink href="/products/new" >Create New</NavLink></Button>
             <TableContainer component={Paper} >
-                <ProductTable size="small" stickyHeader>
+                <ProductTable size="small" >
                     <TableHead>
                         <TableRow>
                             {HeaderRows.map(row => (
