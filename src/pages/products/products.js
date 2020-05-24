@@ -47,7 +47,7 @@ const Products = () => {
     const { token } = useContext(AuthContext);
     async function fetchProductData() {
         setLoading(true);
-        await axios.get('http://localhost:5000/products',
+        await axios.get(`${process.env.REACT_APP_API}/products`,
         {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -79,7 +79,7 @@ const Products = () => {
     }
     const handleIconClick = (event, action) => {
         if (action === 'delete') {
-            axios.post(`https://damp-plains-96902.herokuapp.com/products/delete`,
+            axios.post(`${process.env.REACT_APP_API}/products/delete`,
             { data: { prodId: productId } })
                 .then(res => {
                     fetchProductData();

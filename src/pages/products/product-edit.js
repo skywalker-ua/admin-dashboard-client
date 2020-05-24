@@ -26,7 +26,7 @@ const ProductEdit = (props) => {
     );
 
     async function fetchProductData() {
-        await axios.get(`http://localhost:5000/products/${productId}`)
+        await axios.get(`${process.env.REACT_APP_API}/products/${productId}`)
             .then(res => {
                 setProduct(res.data);
             })
@@ -34,7 +34,7 @@ const ProductEdit = (props) => {
     }
 
     function updateProductData() {
-        axios.patch(`http://localhost:5000/products/update`,
+        axios.patch(`${process.env.REACT_APP_API}/products/update`,
         { data: { formData: formValue } } )
             .then(res => {
                 if (res.data.edited) {

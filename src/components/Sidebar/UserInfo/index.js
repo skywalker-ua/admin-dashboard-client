@@ -15,7 +15,7 @@ const UserImage = styled(Avatar)({
 const UserInfo = (props) => {
     return(
         <div className="user-profile-sidebar">
-            <UserImage >N</UserImage>
+            <UserImage >{props.user.name.charAt(0)}</UserImage>
             <div className="user-profile__username">{props.user.name} {props.user.surname}</div>
             <div className="user-profile__email">{props.user.email}</div>
         </div>

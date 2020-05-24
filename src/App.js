@@ -6,6 +6,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import Spinner from './components/Spinner';
 import Auth from './pages/auth';
 import axios from 'axios';
 import Orders from './pages/orders';
@@ -19,18 +20,22 @@ import './App.css';
 
 const App = () => {
   const [authState, setAuthState] = React.useState(false)
+  const [loading, setLoading] = React.useState(true);
   const [appToken, setAppToken] = React.useState(undefined);
   const [userProfile, setUserProfile] = React.useState({
     name: '',
     email: '',
     surname: ''
   });
-  const [cookies, setCookie] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   
   useEffect(() => {
-    axios.post('http://localhost:5000/token/check', {data: { token: cookies.token } } )
+    setLoading(true);
+    axios.post(`${process.env.REACT_APP_API}/token/check`, {data: { token: cookies.token } } )
       .then(response => {
+        setLoading(false);
         console.log(response);
+        setUserProfile(response.data.user);
         setAppToken(cookies.token);
         setAuthState(true);
       })
@@ -38,12 +43,15 @@ const App = () => {
         console.log(err)
         if (err) {
           setAuthState(false);
+          setLoading(false);
           setAppToken(false);
         }
       });
   }, [])
 
   return(
+    <>
+    {loading ? <Spinner /> :
     <Router>
     <AuthContext.Provider value={{
       authenticated: authState,
@@ -53,6 +61,7 @@ const App = () => {
       logout: () => {
         setAuthState(false);
         setAppToken(undefined);
+        removeCookie('token')
       },
       setToken: (token) => {
         setAppToken(token);
@@ -89,7 +98,9 @@ const App = () => {
         <Route path="/products/:productId">
           <ProductEdit />
         </Route> 
-        
+        <Route to="*">
+          <Redirect to="/" />
+        </Route>
       </Layout>
     </Switch>
     :
@@ -102,6 +113,9 @@ const App = () => {
             <Route path="/signup">
               <Auth title="Sign Up" />
             </Route>
+            <Route path="*">
+              <Redirect to="/login" />
+            </Route>
             </div>
         </div>
       </Switch>}
@@ -109,7 +123,8 @@ const App = () => {
     
     </div>
     </AuthContext.Provider>
-  </Router>
+  </Router>}
+  </>
   );
 }
 

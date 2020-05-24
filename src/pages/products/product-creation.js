@@ -24,7 +24,7 @@ const ProductCreation = () => {
 
     const formSubmitHandler = e => {
         e.preventDefault();
-        axios.post('https://damp-plains-96902.herokuapp.com/products/create',
+        axios.post(`${process.env.REACT_APP_API}/products/create`,
         {
             product: JSON.stringify(formValue)
         })
