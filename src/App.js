@@ -20,7 +20,7 @@ import './App.css';
 
 const App = () => {
   const [authState, setAuthState] = React.useState(false)
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const [appToken, setAppToken] = React.useState(undefined);
   const [userProfile, setUserProfile] = React.useState({
     name: '',
