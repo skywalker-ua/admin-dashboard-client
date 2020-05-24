@@ -52,8 +52,8 @@ const Auth = (props) => {
                 });
         }
         if (title === 'Sign Up') {
-            axios.post('https://damp-plains-96902.herokuapp.com/signup',
-            // axios.post(`${process.env.REACT_APP_API}/signup`,
+            // axios.post('https://damp-plains-96902.herokuapp.com/signup',
+            axios.post(`${process.env.REACT_APP_API}/signup`,
                 { data: { formData: data} } )
                 .then(res => {
                     setLoading(false);
