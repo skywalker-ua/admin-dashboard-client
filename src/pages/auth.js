@@ -35,7 +35,7 @@ const Auth = (props) => {
             // axios.post('https://damp-plains-96902.herokuapp.com/login',
             
             axios.post(`${process.env.REACT_APP_API}/login`,
-                { data: { formData: data }} )
+                { data: { formData: data }}, { crossDomain: true } )
                 .then(res => {
                         setLoading(false);
                         const userProfile = res.data.user;
@@ -54,7 +54,7 @@ const Auth = (props) => {
         if (title === 'Sign Up') {
             // axios.post('https://damp-plains-96902.herokuapp.com/signup',
             axios.post(`${process.env.REACT_APP_API}/signup`,
-                { data: { formData: data} } )
+                { data: { formData: data} }, { crossDomain: true } )
                 .then(res => {
                     setLoading(false);
                     history.push('/login');
