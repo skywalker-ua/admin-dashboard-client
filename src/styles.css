@@ -76,5 +76,7 @@
 @media (max-width: 600px) {
     .auth-container {
         background-image: none;
+        background-size: none;
+        height: 100%;
     }
 }

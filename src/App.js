@@ -30,7 +30,6 @@ const App = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   
   useEffect(() => {
-    if (appToken) {
     setLoading(true);
     axios.post(`${process.env.REACT_APP_API}/token/check`, {data: { token: cookies.token } } )
       .then(response => {
@@ -48,7 +47,6 @@ const App = () => {
           setAppToken(false);
         }
       });
-    }
   }, [])
 
   return(
