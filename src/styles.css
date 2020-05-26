@@ -50,7 +50,7 @@
 
 .form-paper {
     width: 400px;
-    height: 400px;
+    height: 500px;
 }
 
 .product-creation__form, .product-edit__form {
@@ -77,6 +77,6 @@
     .auth-container {
         background-image: none;
         background-size: none;
-        height: 100%;
+        height: 100vh;
     }
 }

@@ -1,30 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import OrdersPanel from '../components/OrdersPanel';
 import OrdersTitle from '../components/OrdersPanel/OrdersTitle';
-import data from '../constants/orders.json';
+import AuthContext from '../context/auth-context';
+// import data from '../constants/orders.json';
 import axios from 'axios';
 
 const Orders = () => {
-
+    const { token } = useContext(AuthContext);
+    const [orders, setOrders] = useState(undefined);
     useEffect(() => {
-        axios.get('http://localhost:5000/orders')
-            .then(data => console.log(data))
+        axios.get('http://localhost:5000/orders',
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(res => {
+                console.log(res);
+                const orders = [res.data];
+                setOrders(orders);
+            })
             .catch(err => console.log(err));
     }, [])
 
     return(
         <div className="orders-main">
-            {/* <OrdersTitle />
-            {data.map(order => (
+            <OrdersTitle />
+            {orders && orders.map(order => (
                 <OrdersPanel 
                     key={order.id * Math.random()}
-                    orderNumber={order.orderId} 
-                    orderDate={order.date}
+                    orderNumber={order.id} 
+                    orderDate={order.createdAt}
                     productImage={order.productImgUrl}
-                    productName={order.productName}
+                    productName={order.product}
                     productQty={order.qty}
-                    productSum={order.sum} />
-            ))} */}
+                    productSum={order.orderTotal} />
+            ))}
         </div>
     );
 };
