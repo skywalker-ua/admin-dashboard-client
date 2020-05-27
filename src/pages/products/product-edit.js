@@ -1,9 +1,10 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect, useState, useContext } from 'react';
 import {
     Button
 } from '@material-ui/core';
 import Input from '../../components/Input';
 import PageSurface from '../../components/PageSurface';
+import AuthContext from '../../context/auth-context';
 import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,7 +12,7 @@ const ProductEdit = (props) => {
     let history = useHistory();
     const { productId } = useParams();
     const [productValues, setProduct] = useState([])
-
+    const { token } = useContext(AuthContext);
     const [formValue, setFormValue] = useReducer(
         (formValue, newState) => ({ ...formValue, ...newState}),
         {
@@ -26,7 +27,10 @@ const ProductEdit = (props) => {
     );
 
     async function fetchProductData() {
-        await axios.get(`${process.env.REACT_APP_API}/products/${productId}`)
+        await axios.get(`${process.env.REACT_APP_API}/products/${productId}`,
+        { headers: { 
+            'Authorization': `Bearer ${token}`
+        }})
             .then(res => {
                 setProduct(res.data);
             })
@@ -35,7 +39,10 @@ const ProductEdit = (props) => {
 
     function updateProductData() {
         axios.patch(`${process.env.REACT_APP_API}/products/update`,
-        { data: { formData: formValue } } )
+        { data: { formData: formValue } },
+        { headers: {
+            'Authorization': `Bearer ${token}`
+        }} )
             .then(res => {
                 if (res.data.edited) {
                     history.push('/products');

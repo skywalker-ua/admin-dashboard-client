@@ -98,7 +98,7 @@ const App = () => {
         <Route path="/products/:productId">
           <ProductEdit />
         </Route> 
-        <Route to="*">
+        <Route path="*">
           <Redirect to="/" />
         </Route>
       </Layout>

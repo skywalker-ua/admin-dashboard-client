@@ -80,7 +80,10 @@ const Products = () => {
     const handleIconClick = (event, action) => {
         if (action === 'delete') {
             axios.post(`${process.env.REACT_APP_API}/products/delete`,
-            { data: { prodId: productId } })
+            { data: { prodId: productId } },
+            { headers: {
+                'Authorization': `Bearer ${token}`
+            }})
                 .then(res => {
                     fetchProductData();
                 })

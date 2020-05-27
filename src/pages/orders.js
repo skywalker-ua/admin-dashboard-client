@@ -34,7 +34,9 @@ const Orders = () => {
                     productImage={order.productImgUrl}
                     productName={order.product}
                     productQty={order.qty}
-                    productSum={order.orderTotal} />
+                    productSum={order.orderTotal}
+                    orderStatus={order.status}
+                     />
             ))}
         </div>
     );

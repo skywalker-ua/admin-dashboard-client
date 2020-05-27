@@ -1,9 +1,10 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useContext } from 'react';
 import Input from '../../components/Input';
 import PageSurface from '../../components/PageSurface';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { Button } from '@material-ui/core';
+import AuthContext from '../../context/auth-context';
 
 const ProductCreation = () => {
 
@@ -21,13 +22,18 @@ const ProductCreation = () => {
         }
     );
     let history = useHistory()
-
+    const { token } = useContext(AuthContext);
     const formSubmitHandler = e => {
         e.preventDefault();
         axios.post(`${process.env.REACT_APP_API}/products/create`,
         {
             product: JSON.stringify(formValue)
-        })
+        },
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        },)
             .then(response => {
                 console.log(response);
                 history.push('/products');

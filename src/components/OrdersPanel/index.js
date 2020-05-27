@@ -19,7 +19,7 @@ const OrderPanel = styled(ExpansionPanel)({
 })
 
 const OrdersPanel = (props) => {
-    const { orderNumber, orderDate, productImage, productName, productQty, productSum } = props;
+    const { orderNumber, orderDate, productImage, productName, productQty, productSum, orderStatus } = props;
     return(
         <React.Fragment>
             
@@ -34,6 +34,7 @@ const OrdersPanel = (props) => {
                     </div>
                     <Typography className="order-qty">{productQty} шт.</Typography>
                     <Typography className="product-total__price">{productSum} грн</Typography>
+                    <Typography>{orderStatus}</Typography>
                 </ExpansionPanelSummary>
                 <OrderPanelDetails className="panel-details">
                     <Divider />
