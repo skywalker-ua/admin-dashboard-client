@@ -1,8 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react';
-import OrdersPanel from '../components/OrdersPanel';
-import OrdersTitle from '../components/OrdersPanel/OrdersTitle';
+import OrdersContainer from '../components/OrdersContainer';
+// import OrdersPanel from '../components/OrdersPanel';
+// import OrdersTitle from '../components/OrdersPanel/OrdersTitle';
 import AuthContext from '../context/auth-context';
-// import data from '../constants/orders.json';
+import { 
+    Typography
+ } from '@material-ui/core';
 import axios from 'axios';
 
 const Orders = () => {
@@ -25,7 +28,11 @@ const Orders = () => {
 
     return(
         <div className="orders-main">
-            <OrdersTitle />
+        <div className="page-title">
+            <Typography variant="h4">Orders</Typography>
+        </div>
+            <OrdersContainer />
+            {/* <OrdersTitle />
             {orders && orders.map(order => (
                 <OrdersPanel 
                     key={order.id * Math.random()}
@@ -37,7 +44,7 @@ const Orders = () => {
                     productSum={order.orderTotal}
                     orderStatus={order.status}
                      />
-            ))}
+            ))} */}
         </div>
     );
 };

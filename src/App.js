@@ -97,9 +97,6 @@ const App = () => {
         </Route>
         <Route path="/products/:productId">
           <ProductEdit />
-        </Route> 
-        <Route path="*">
-          <Redirect to="/" />
         </Route>
       </Layout>
     </Switch>
@@ -112,9 +109,6 @@ const App = () => {
             </Route>
             <Route path="/signup">
               <Auth title="Sign Up" />
-            </Route>
-            <Route path="*">
-              <Redirect to="/login" />
             </Route>
             </div>
         </div>

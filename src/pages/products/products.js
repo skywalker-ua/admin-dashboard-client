@@ -13,7 +13,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    Typography
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import NavLink from '../../components/Link/index';
@@ -96,6 +97,9 @@ const Products = () => {
         <div className="products-page">
         {loading ? <Spinner /> :
             <React.Fragment>
+            <div className="page-title">
+                <Typography variant="h4" >Products</Typography>
+            </div>
             <Button 
                 variant="contained" 
                 color="secondary">
@@ -139,6 +143,7 @@ const Products = () => {
             </TableContainer>
             <Popover
                 id="edit-menu"
+                elevation={1}
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handleClose}
