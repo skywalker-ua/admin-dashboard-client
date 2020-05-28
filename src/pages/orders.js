@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const Orders = () => {
     const { token } = useContext(AuthContext);
-    const [orders, setOrders] = useState(undefined);
+    const [orders, setOrders] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:5000/orders',
         {
@@ -31,20 +31,7 @@ const Orders = () => {
         <div className="page-title">
             <Typography variant="h4">Orders</Typography>
         </div>
-            <OrdersContainer />
-            {/* <OrdersTitle />
-            {orders && orders.map(order => (
-                <OrdersPanel 
-                    key={order.id * Math.random()}
-                    orderNumber={order.id} 
-                    orderDate={order.createdAt}
-                    productImage={order.productImgUrl}
-                    productName={order.product}
-                    productQty={order.qty}
-                    productSum={order.orderTotal}
-                    orderStatus={order.status}
-                     />
-            ))} */}
+            <OrdersContainer orders={orders} />
         </div>
     );
 };
