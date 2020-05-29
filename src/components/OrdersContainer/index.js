@@ -7,7 +7,7 @@ import {
 import { styled } from '@material-ui/core/styles';
 import './OrdersContainer.css';
 import Spinner from '../Spinner';
-
+import { formatDate } from '../../utils/format-data';
 // const orders = [
 //     {id: 112344, status: 'completed', date: '15:53', clientName: 'Joe Jons', clientPhone: '+3801231113', orderTotal: 1441, orderProducts: ''},
 //     {id: 113344, status: 'pending'},
@@ -34,11 +34,11 @@ const OrdersContainer = (props) => {
             <Table aria-label="order-table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Номер замовлення</TableCell>
-                        <TableCell>Дата замовлення</TableCell>
-                        <TableCell>Покупець</TableCell>
-                        <TableCell>Сума замовлення</TableCell>
-                        <TableCell>Товари</TableCell>
+                        <TableCell>Order Id</TableCell>
+                        <TableCell>Order Date</TableCell>
+                        <TableCell>Client</TableCell>
+                        <TableCell>Order Sum</TableCell>
+                        <TableCell>Products</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -47,15 +47,33 @@ const OrdersContainer = (props) => {
                             <OrderIdCell >
                                 <div className="order-block__order-id">
                                     {order.status === 'Completed' &&  <div className="order-block__status" style={{backgroundColor: 'green'}} />}
-                                    {order.status === 'Pending' &&  <div className="order-block__status" style={{backgroundColor: 'yellow'}} />}
+                                    {order.status === 'Pending' &&  <div className="order-block__status" style={{backgroundColor: 'lightblue'}} />}
                                     {order.status === 'Canceled' &&  <div className="order-block__status" style={{backgroundColor: 'red'}} />}
                                     <div className="order-block__order-info">
                                         {order.id}
                                     </div>
                                 </div>
                             </OrderIdCell>
-                            <TableCell >{order.createdAt}</TableCell>
-                            <TableCell>{order.clientName}</TableCell>
+                            <TableCell>
+                                <div className="order-block__order-date">
+                                    <div className="order-block__order-date-hour">
+                                        {formatDate(order.createdAt, 'hour')}
+                                    </div>
+                                    <div className="order-block__order-date-ymd">
+                                        {formatDate(order.createdAt, 'ymd')}
+                                    </div>
+                                </div>
+                            </TableCell>
+                            <TableCell>
+                                <div className="order-block__order-client">
+                                    <div className="order-block__order-client-name">
+                                        {order.clientName}
+                                    </div>
+                                    <div className="order-block__order-client-phone">
+                                        {order.clientPhone}
+                                    </div>
+                                </div>
+                            </TableCell>
                             <TableCell>{order.orderTotal + ' грн'}</TableCell>
                             <TableCell>{order.orderProducts}</TableCell>
                         </OrdersRow>

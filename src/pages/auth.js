@@ -5,8 +5,9 @@ import {
     TextField,
     Button,
     Divider,
-    LinearProgress
+    LinearProgress,
 } from '@material-ui/core';
+import { Alert } from '@material-ui/lab'
 import { styled } from '@material-ui/core/styles';
 import Link from '../components/Link';
 import { useHistory } from 'react-router-dom';
@@ -22,6 +23,7 @@ const FormDivider = styled(Divider)({
 })
 const Auth = (props) => {
     const [loading, setLoading] = useState(false);
+    const [httpError, setHttpError] = useState(undefined);
     const { authenticated, login, setUser, user, token, setToken } = useContext(AuthContext);
     const { handleSubmit, register, errors, watch, formState } = useForm({
         mode: 'onChange'
@@ -32,8 +34,6 @@ const Auth = (props) => {
     const formSubmit = (data) => {
         setLoading(true);
         if (title === 'Login') {
-            // axios.post('https://damp-plains-96902.herokuapp.com/login',
-            
             axios.post(`${process.env.REACT_APP_API}/login`,
                 { data: { formData: data }})
                 .then(res => {
@@ -48,11 +48,11 @@ const Auth = (props) => {
                 })
                 .catch(err => {
                     setLoading(false);
-                    console.log(err);
+                    setHttpError(err.response.data);
+                    console.log(err.response.data);
                 });
         }
         if (title === 'Sign Up') {
-            // axios.post('https://damp-plains-96902.herokuapp.com/signup',
             axios.post(`${process.env.REACT_APP_API}/signup`,
                 { data: { formData: data} })
                 .then(res => {
@@ -69,6 +69,7 @@ const Auth = (props) => {
     const { title } = props;
     return(
             <Paper className="form-paper">
+                {httpError && <Alert severity="error" >{httpError}</Alert> }
                 <form className="login-form" onSubmit={handleSubmit(formSubmit)}>
                     <Typography variant="h5">{title}</Typography>
                     {loading ? <LinearProgress style={{width: '100%'}} variant="query" />
@@ -187,9 +188,14 @@ const Auth = (props) => {
                             {title}
                     </Button>
                     <FormDivider />
-                    <Typography>
-                        <Link href={title === 'Login' ? "/signup" : '/login'}>
-                            {title === 'Login' ? 'Sign Up?' : 'Login?'}
+                    {title === 'Login' && (<Typography color="primary">
+                        <Link href="/forgot-password">
+                            Forgot password?
+                        </Link>
+                    </Typography>)}
+                    <Typography >
+                        <Link  href={title === 'Login' ? "/signup" : '/login'}>
+                            {title === 'Login' ? 'Sign Up' : 'Login'}
                         </Link>
                     </Typography>
                 </form>

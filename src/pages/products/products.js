@@ -24,6 +24,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AuthContext from '../../context/auth-context';
+import AddIcon from '@material-ui/icons/Add';
 
 const ProductTable = styled(Table)({
     overflow: 'auto'
@@ -101,10 +102,9 @@ const Products = () => {
                 <Typography variant="h4" >Products</Typography>
             </div>
             <Button 
-                variant="contained" 
-                color="secondary">
+                startIcon={<AddIcon />}>
                 <NavLink href="/product/new" >
-                    Create New
+                    Add Product
                 </NavLink>
             </Button>
             <TableContainer component={Paper} >

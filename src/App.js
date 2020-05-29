@@ -13,6 +13,7 @@ import Orders from './pages/orders';
 import Products from './pages/products/products';
 import ProductEdit from './pages/products/product-edit';
 import ProductCreation from './pages/products/product-creation';
+import ForgotPassword from './pages/forgot-password';
 import AuthContext from './context/auth-context';
 import { useCookies } from 'react-cookie';
 import './styles.css';
@@ -104,12 +105,17 @@ const App = () => {
       <Switch>
         <div className="auth-container">
           <div className="auth-form">
-            <Route path="/login">
+            <Route  path="/login">
                 <Auth title="Login" />
             </Route>
             <Route path="/signup">
               <Auth title="Sign Up" />
             </Route>
+            <Route  path="/forgot-password">
+              <ForgotPassword title="Password Recovery" />
+            </Route>
+            <Redirect to="/login" />
+            
             </div>
         </div>
       </Switch>}

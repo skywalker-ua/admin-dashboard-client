@@ -50,18 +50,20 @@ const ProductCreation = () => {
     }
 
     return(
-        <PageSurface title="Create new Product">
-            <form className="product-creation__form" onSubmit={formSubmitHandler}>
-                <Input name="id" onChange={handleInputChange} value={formValue.id} label="ID" variant="outlined" type="number" />
-                <Input name="name" onChange={handleInputChange} value={formValue.name} label="Name" variant="outlined" type="text" />
-                <Input name="imgUrl" onChange={handleInputChange} value={formValue.imgUrl} label="Image Url" variant="outlined" type="text" />
-                <Input name="sku" onChange={handleInputChange} value={formValue.sku} label="SKU" variant="outlined" type="number" />
-                <Input name="category" onChange={handleInputChange} value={formValue.category} label="Category" variant="outlined" type="text" />
-                <Input name="price" onChange={handleInputChange} value={formValue.price} label="Price" variant="outlined" type="number" />
-                <Input name="qty" onChange={handleInputChange} value={formValue.qty} label="Quantity" variant="outlined" type="number" />
-                <Button className="form-button" type="submit" color="primary" variant="contained">Create</Button>
-            </form>
-        </PageSurface>
+        <div className="page-product-creation">
+            <PageSurface title="Create new Product">
+                <form className="product-creation__form" onSubmit={formSubmitHandler}>
+                    <Input name="id" onChange={handleInputChange} value={formValue.id} label="ID" variant="outlined" type="number" />
+                    <Input name="name" onChange={handleInputChange} value={formValue.name} label="Name" variant="outlined" type="text" />
+                    <Input name="imgUrl" onChange={handleInputChange} value={formValue.imgUrl} label="Image Url" variant="outlined" type="text" />
+                    <Input name="sku" onChange={handleInputChange} value={formValue.sku} label="SKU" variant="outlined" type="number" />
+                    <Input name="category" onChange={handleInputChange} value={formValue.category} label="Category" variant="outlined" type="text" />
+                    <Input name="price" onChange={handleInputChange} value={formValue.price} label="Price" variant="outlined" type="number" />
+                    <Input name="qty" onChange={handleInputChange} value={formValue.qty} label="Quantity" variant="outlined" type="number" />
+                    <Button className="form-button" type="submit" color="primary" variant="contained">Create</Button>
+                </form>
+            </PageSurface>
+        </div>
     );
 };
 

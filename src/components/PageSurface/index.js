@@ -8,7 +8,7 @@ import './PageSurface.css';
 
 const PageSurface = ({title, children}) => {
     return(
-        <Paper className="page-surface" square>
+        <Paper className="page-surface" >
             <Typography style={{padding: '10px'}} variant="h5" >{title}</Typography>
             <Divider />
             <div className="page-surface__content">

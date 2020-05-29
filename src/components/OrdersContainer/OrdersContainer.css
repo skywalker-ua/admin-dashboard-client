@@ -16,3 +16,16 @@
     align-items: center;
     height: 100px;
 }
+
+.order-block__order-date, .order-block__order-client {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.order-block__order-date-hour, .order-block__order-client-name {
+    font-size: 1.3em;
+}
+
+.order-block__order-date-ymd, .order-block__order-client-phone {
+    color: rgb(149, 149, 149);
+}

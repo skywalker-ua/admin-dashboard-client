@@ -7,10 +7,10 @@
 
 .auth-container {
     height: 100vh;
-    background-image: url('./assets/alpes.jpg');
-    background-size: 100% 100%;
+    /* background-image: url('./assets/alpes.jpg'); */
+    /* background-size: 100% 100%; */
+    
 }
-
 
 .login-form {
     display: flex;
@@ -50,11 +50,11 @@
     width: 95%;
 }
 
-.form-paper {
+.form-paper, .page-product-recover {
     width: 400px;
 }
 
-.product-creation__form, .product-edit__form {
+.product-creation__form, .product-edit__form, .product-recovery__form {
     display: flex;
     width: 100%;
     flex-flow: column nowrap;
@@ -65,7 +65,7 @@
     width: 20%;
 }
 
-.products-page {
+.products-page, .page-product-creation {
     width: 95%;
     margin-bottom: 15px;
 }
@@ -76,10 +76,17 @@
 
 .page-title {
     display: flex;
-    flex-flow: row nowrap;
-    padding: 10px 0 25px 0;
+    flex-flow: column nowrap;
+    padding: 10px 0 15px 0;
 }
 
+.page-toolbar {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    flex-flow: row nowrap;
+    height: 30px;
+}
 
 @media (max-width: 600px) {
     .auth-container {
