@@ -61,6 +61,7 @@ const Auth = (props) => {
                 })
                 .catch(err => {
                     setLoading(false);
+                    setHttpError(err.response.data);
                     console.log(err);
                 });
         }

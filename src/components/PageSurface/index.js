@@ -2,7 +2,8 @@ import React from 'react';
 import {
     Paper,
     Typography,
-    Divider
+    Divider,
+    LinearProgress
 } from '@material-ui/core';
 import './PageSurface.css';
 
