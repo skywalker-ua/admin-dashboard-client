@@ -1,0 +1,17 @@
+.product-selection {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.product-selection-form {
+    width: 90%;
+    
+}
+
+.qty-input {
+    width: 16%;
+    margin-left: 10px;
+}

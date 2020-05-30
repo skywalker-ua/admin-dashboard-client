@@ -9,10 +9,11 @@ import {
 import Spinner from './components/Spinner';
 import Auth from './pages/auth';
 import axios from 'axios';
-import Orders from './pages/orders';
+import Orders from './pages/orders/orders';
 import Products from './pages/products/products';
 import ProductEdit from './pages/products/product-edit';
 import ProductCreation from './pages/products/product-creation';
+import OrderCreation from './pages/orders/order-creation';
 import ForgotPassword from './pages/forgot-password';
 import AuthContext from './context/auth-context';
 import { useCookies } from 'react-cookie';
@@ -89,6 +90,9 @@ const App = () => {
         </Route>
         <Route path="/orders">
           <Orders />
+        </Route>
+        <Route path="/order/new">
+          <OrderCreation />
         </Route>
         <Route exact path="/products">
           <Products />

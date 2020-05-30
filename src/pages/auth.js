@@ -200,6 +200,7 @@ const Auth = (props) => {
                         </Link>
                     </Typography>
                 </form>
+                <Alert severity="info" >Test user: email: test@test.com; password: test123</Alert>
             </Paper>
         )
 };

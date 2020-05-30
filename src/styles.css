@@ -54,7 +54,8 @@
     width: 400px;
 }
 
-.product-creation__form, .product-edit__form, .product-recovery__form {
+.product-creation__form, .product-edit__form, .product-recovery__form,
+.order-create__form {
     display: flex;
     width: 100%;
     flex-flow: column nowrap;
@@ -65,7 +66,7 @@
     width: 20%;
 }
 
-.products-page, .page-product-creation {
+.products-page, .page-product-creation, .page-order-creation {
     width: 95%;
     margin-bottom: 15px;
 }
@@ -87,6 +88,7 @@
     flex-flow: row nowrap;
     height: 30px;
 }
+
 
 @media (max-width: 600px) {
     .auth-container {

@@ -1,13 +1,14 @@
 import React, { useEffect, useContext, useState } from 'react';
-import OrdersContainer from '../components/OrdersContainer';
+import OrdersContainer from '../../components/OrdersContainer';
 // import OrdersPanel from '../components/OrdersPanel';
 // import OrdersTitle from '../components/OrdersPanel/OrdersTitle';
-import AuthContext from '../context/auth-context';
+import AuthContext from '../../context/auth-context';
 import { 
     Typography, Button, Divider
  } from '@material-ui/core';
 import axios from 'axios';
 import AddIcon from '@material-ui/icons/Add';
+import NavLink from '../../components/Link';
 
 const Orders = () => {
     const { token } = useContext(AuthContext);
@@ -33,7 +34,9 @@ const Orders = () => {
             <Typography variant="h4">Orders</Typography>
             <div className="page-toolbar">
                 <Button startIcon={<AddIcon />}>
-                    Add Order
+                    <NavLink href="/order/new">
+                        Add Order
+                    </NavLink>
                 </Button>
                 <Divider orientation="vertical" />
             </div>
