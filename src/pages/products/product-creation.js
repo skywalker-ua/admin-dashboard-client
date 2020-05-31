@@ -21,7 +21,7 @@ const ProductCreation = () => {
             qty: ''
         }
     );
-    let history = useHistory()
+    let history = useHistory();
     const { token } = useContext(AuthContext);
     const formSubmitHandler = e => {
         e.preventDefault();

@@ -5,11 +5,72 @@
     align-items: center;
 }
 
+.homepage-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    width: 96%;
+    margin-bottom: 15px;
+}
+
+.widget-surface {
+    width: 100%;
+    width: 500px;
+    height: 100%;
+}
+.widget-title {
+    padding: 10px;
+}
+
+.widget-body {
+    width: 100%;
+}
+
+.widget-children {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.orders-element {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    max-width: 200px;
+    width: 100%;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.orders-element__text-status {
+    font-size: 1.3em;
+    
+    color: rgb(133, 133, 133);
+}
+
+.orders-element__num-status {
+    font-size: 1.9em;
+}
+
+.orders-element__order-status {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    height: 10px;
+    top: 0px;
+}
+
 .auth-container {
     height: 100vh;
-    /* background-image: url('./assets/alpes.jpg'); */
-    /* background-size: 100% 100%; */
-    
 }
 
 .login-form {

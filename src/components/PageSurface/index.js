@@ -3,7 +3,6 @@ import {
     Paper,
     Typography,
     Divider,
-    LinearProgress
 } from '@material-ui/core';
 import './PageSurface.css';
 

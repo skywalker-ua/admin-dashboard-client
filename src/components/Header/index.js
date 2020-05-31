@@ -25,7 +25,7 @@ const Header = (props) => {
    const { authenticated } = useContext(AuthContext);
     return(
         <React.Fragment>
-            <HeaderBar elevation={1}>
+            <HeaderBar elevation={1} position="relative" >
                 <Toolbar>
                     {authenticated  ?
                     <IconButton style={{marginRight: '10px'}} onClick={props.onClick}>
@@ -43,7 +43,7 @@ const Header = (props) => {
                     </Button>
                 </Toolbar>
             </HeaderBar>
-            <Toolbar />
+            {/* <Toolbar /> */}
         </React.Fragment>
     );
 };

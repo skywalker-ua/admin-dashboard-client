@@ -14,6 +14,8 @@ const OrderCreation = () => {
             <form className="order-create__form">
             <Input label="ID" name="id" variant="outlined" type="number" />
             <Input label="Client name" name="clientName" variant="outlined" type="text" />
+            <Input label="Client surname" name="clientSurname" variant="outlined" type="text" />
+            <Input label="Client Phone" name="clientName" variant="outlined" type="text" />
             <ProductSelector />
             <Button 
                 className="form-button" 

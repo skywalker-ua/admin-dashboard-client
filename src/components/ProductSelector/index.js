@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useReducer } from 'react';
 import {
     Select,
     MenuItem,
@@ -12,9 +12,18 @@ import AuthContext from '../../context/auth-context';
 
 import './ProductSelector.css';
 
-const ProductSelector = () => {
+const ProductSelector = (props) => {
+    
     const [products, setProducts] = useState([]);
-    const [selectedProduct, setSelectedProduct] = useState('');
+
+    const [selectedProduct, setSelectedProduct] = useReducer(
+        (selectedProduct, newState) => ({...selectedProduct, ...newState}),
+        {
+            product: {},
+            qty: ''
+        }
+    )
+
     const [loading, setLoading] = useState(false);
     const { token } = useContext(AuthContext);
     
@@ -34,33 +43,55 @@ const ProductSelector = () => {
                 console.log(err)
             });
     }
+    
     const handleOpen = () => {
         setLoading(true);
         fetchProducts()
         // setProduct(event.target.value);
     }
     const handleChange = event => {
-        setSelectedProduct(event.target.value);
+        const value = event.target.value;
+        const name = event.target.name;
+        setSelectedProduct({
+            [name]: value
+        });
     }
+
     return(
         <div className="product-selection">
-        <FormControl variant="outlined" className="product-selection-form">
-        <InputLabel>Select Product</InputLabel>
-            <Select
-                label="product-select"
-                id="product-select"
-                onOpen={handleOpen}
+        {selectedProduct.product.imgUrl && 
+            <div className="selected-item-img">
+                <img alt={selectedProduct.product.name} className="selection-image" src={selectedProduct.product.imgUrl} />
+            </div>
+        }
+        <div className="product-selection__form-inputs">
+            <FormControl variant="outlined" className="product-selection-form">
+            <InputLabel>Select Product</InputLabel>
+                <Select
+                    label="product-select"
+                    id="product-select"
+                    name="product"
+                    onOpen={handleOpen}
+                    onChange={handleChange}
+                    value={selectedProduct.product.name}>
+                    {loading ? <MenuItem><CircularProgress  /></MenuItem> : 
+                        products.map(product => (
+                            <MenuItem value={product}>{product.name}</MenuItem>
+                        ))
+                    }
+                </Select>
+            </FormControl>
+            <div className="qty-input">
+                <TextField  
+                type="number"
+                name="qty"
+                inputProps={{ min: '1', max: '1000', step: '1'}}
+                label="Quantity" 
+                variant="outlined"
+                value={selectedProduct.qty} 
                 onChange={handleChange}
-                value={selectedProduct}>
-                {loading ? <MenuItem><CircularProgress  /></MenuItem> : 
-                    products.map(product => (
-                        <MenuItem value={product.id}>{product.name}</MenuItem>
-                    ))
-                }
-            </Select>
-        </FormControl>
-        <div className="qty-input">
-            <TextField  type="number" label="Quantity" variant="outlined" />
+                />
+            </div>
         </div>
         </div>
     );

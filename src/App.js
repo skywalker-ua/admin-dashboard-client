@@ -14,6 +14,7 @@ import Products from './pages/products/products';
 import ProductEdit from './pages/products/product-edit';
 import ProductCreation from './pages/products/product-creation';
 import OrderCreation from './pages/orders/order-creation';
+import Index from './pages/index';
 import ForgotPassword from './pages/forgot-password';
 import AuthContext from './context/auth-context';
 import { useCookies } from 'react-cookie';
@@ -86,7 +87,7 @@ const App = () => {
     <Switch>
       <Layout>
         <Route exact path="/">
-          Home
+          <Index />
         </Route>
         <Route path="/orders">
           <Orders />
