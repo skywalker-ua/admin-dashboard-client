@@ -54,3 +54,9 @@
 }
 
 
+.order-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    margin-left: 10px;
+}

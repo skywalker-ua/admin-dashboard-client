@@ -46,9 +46,10 @@ const OrdersContainer = (props) => {
                         <OrdersRow key={order.id} hover>
                             <OrderIdCell >
                                 <div className="order-block__order-id">
-                                    {order.status === 'Completed' &&  <div className="order-block__status" style={{backgroundColor: 'green'}} />}
-                                    {order.status === 'Pending' &&  <div className="order-block__status" style={{backgroundColor: 'lightblue'}} />}
-                                    {order.status === 'Canceled' &&  <div className="order-block__status" style={{backgroundColor: 'red'}} />}
+                                    {order.status === 'new' &&  <div className="order-block__status" style={{backgroundColor: 'orange'}} />}
+                                    {order.status === 'pending' &&  <div className="order-block__status" style={{backgroundColor: 'lightblue'}} />}
+                                    {order.status === 'completed' &&  <div className="order-block__status" style={{backgroundColor: 'green'}} />}
+                                    {order.status === 'shipping' &&  <div className="order-block__status" style={{backgroundColor: 'black'}} />}
                                     <div className="order-block__order-info">
                                         {order.id}
                                     </div>
@@ -74,8 +75,8 @@ const OrdersContainer = (props) => {
                                     </div>
                                 </div>
                             </TableCell>
-                            <TableCell>{order.orderTotal + ' грн'}</TableCell>
-                            <TableCell>{order.orderProducts}</TableCell>
+                            <TableCell>{parseInt(order.product.price) * parseInt(order.qty) + ' грн'}</TableCell>
+                            <TableCell align="left" ><img className="product-image-order" src={order.product.imgUrl} /></TableCell>
                         </OrdersRow>
                     ))}
                 </TableBody>
