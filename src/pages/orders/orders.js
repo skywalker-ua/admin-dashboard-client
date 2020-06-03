@@ -14,7 +14,7 @@ const Orders = () => {
     const { token } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/orders',
+        axios.get(`${process.env.REACT_APP_API}/orders`,
         {
             headers: {
                 'Authorization': `Bearer ${token}`

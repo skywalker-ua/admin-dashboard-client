@@ -10,6 +10,7 @@ import Spinner from './components/Spinner';
 import Auth from './pages/auth';
 import axios from 'axios';
 import Orders from './pages/orders/orders';
+import Order from './pages/orders/order';
 import Products from './pages/products/products';
 import ProductEdit from './pages/products/product-edit';
 import ProductCreation from './pages/products/product-creation';
@@ -89,11 +90,14 @@ const App = () => {
         <Route exact path="/">
           <Index />
         </Route>
-        <Route path="/orders">
+        <Route exact path="/orders">
           <Orders />
         </Route>
-        <Route path="/order/new">
+        <Route exact path="/order/new">
           <OrderCreation />
+        </Route>
+        <Route path="/orders/:orderId">
+          <Order />
         </Route>
         <Route exact path="/products">
           <Products />
@@ -104,7 +108,7 @@ const App = () => {
         <Route path="/products/:productId">
           <ProductEdit />
         </Route>
-        <Redirect to="/" />
+        {/* <Redirect to="/" /> */}
       </Layout>
     </Switch>
     :
@@ -120,7 +124,7 @@ const App = () => {
             <Route  path="/forgot-password">
               <ForgotPassword title="Password Recovery" />
             </Route>
-            <Redirect to="/login" />
+            {/* <Redirect to="/login" /> */}
             </div>
         </div>
       </Switch>}

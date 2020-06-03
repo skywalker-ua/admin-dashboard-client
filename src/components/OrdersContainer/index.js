@@ -7,13 +7,10 @@ import {
 import { styled } from '@material-ui/core/styles';
 import './OrdersContainer.css';
 import Spinner from '../Spinner';
+import { useHistory } from 'react-router-dom';
 import { formatDate } from '../../utils/format-data';
-// const orders = [
-//     {id: 112344, status: 'completed', date: '15:53', clientName: 'Joe Jons', clientPhone: '+3801231113', orderTotal: 1441, orderProducts: ''},
-//     {id: 113344, status: 'pending'},
-//     {id: 112414, status: 'completed'},
-//     {id: 151344, status: 'canceled'},
-// ];
+
+
 const OrdersRow = styled(TableRow)({
     padding: '0',
     cursor: 'pointer'
@@ -27,6 +24,10 @@ const SpinnerRow = styled(TableRow)({
 })
 const OrdersContainer = (props) => {
     const { orders } = props;
+    const history = useHistory();
+    const handleOrderClick = (id) => {
+        history.push(`/orders/${id}`);
+    }
     return(
         <>
         {orders.length > 0 ?
@@ -43,7 +44,7 @@ const OrdersContainer = (props) => {
                 </TableHead>
                 <TableBody>
                     {orders.map(order => (
-                        <OrdersRow key={order.id} hover>
+                        <OrdersRow key={order.id} hover onClick={() => handleOrderClick(order.id)}>
                             <OrderIdCell >
                                 <div className="order-block__order-id">
                                     {order.status === 'new' &&  <div className="order-block__status" style={{backgroundColor: 'orange'}} />}

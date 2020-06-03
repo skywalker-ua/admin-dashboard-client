@@ -53,10 +53,19 @@
     transition-duration: .3s;
 }
 
-
 .order-icon {
     width: 15px;
     height: 15px;
     border-radius: 10px;
     margin-left: 10px;
+}
+
+.surface-header {
+    padding: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.surface-content {
+    padding: 20px;
 }

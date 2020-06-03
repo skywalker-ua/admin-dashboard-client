@@ -8,8 +8,7 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    IconButton,
-    Button
+    IconButton
 } from '@material-ui/core';
 
 const HeaderBar = styled(AppBar)({
@@ -22,7 +21,7 @@ const HeaderText = styled(Typography)({
 })
 
 const Header = (props) => {
-   const { authenticated } = useContext(AuthContext);
+   const { authenticated, user } = useContext(AuthContext);
     return(
         <React.Fragment>
             <HeaderBar elevation={1} position="relative" >
@@ -34,13 +33,7 @@ const Header = (props) => {
                     <HeaderText variant="h4" color="primary">
                         <Link href="/">Admin</Link>
                     </HeaderText>
-                    <Button 
-                        disableElevation 
-                        color="primary" 
-                        variant="contained"
-                        >
-                    <Link href="/login">Log In</Link>
-                    </Button>
+                    <Typography style={{cursor: 'pointer'}} variant="h5" color="primary" >{user.email}</Typography>
                 </Toolbar>
             </HeaderBar>
             {/* <Toolbar /> */}
