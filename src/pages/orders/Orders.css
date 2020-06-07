@@ -67,5 +67,59 @@
 }
 
 .surface-content {
+    display: flex;
+    flex-flow: row nowrap;
     padding: 20px;
+}
+
+.surface-header__order-details {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.surface-header__order-date {
+    color: rgb(153, 152, 152);
+    font-size: 0.9em;
+}
+
+.surface-content_client {
+    display: flex;
+    width: 30%;
+    flex-flow: column nowrap;
+}
+
+.surface-content_order {
+    display: flex;
+    margin-right: 20px;
+    width: 100%;
+    flex-flow: column nowrap;
+}
+.surface-content_order-info {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+.surface-content_order-status {
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 25px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.order-status-badge {
+    position: absolute;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 10px;
+}
+.order-status-text {
+    color: rgb(124, 124, 124);
+}
+
+.order-status-colored-text {
+    font-size: 1.4em;
 }

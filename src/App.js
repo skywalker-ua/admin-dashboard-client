@@ -108,7 +108,7 @@ const App = () => {
         <Route path="/products/:productId">
           <ProductEdit />
         </Route>
-        {/* <Redirect to="/" /> */}
+        <Redirect to="/" />
       </Layout>
     </Switch>
     :
@@ -124,7 +124,7 @@ const App = () => {
             <Route  path="/forgot-password">
               <ForgotPassword title="Password Recovery" />
             </Route>
-            {/* <Redirect to="/login" /> */}
+              <Redirect to="/login" />
             </div>
         </div>
       </Switch>}

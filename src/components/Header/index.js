@@ -33,7 +33,7 @@ const Header = (props) => {
                     <HeaderText variant="h4" color="primary">
                         <Link href="/">Admin</Link>
                     </HeaderText>
-                    <Typography style={{cursor: 'pointer'}} variant="h5" color="primary" >{user.email}</Typography>
+                    
                 </Toolbar>
             </HeaderBar>
             {/* <Toolbar /> */}
