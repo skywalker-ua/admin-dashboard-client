@@ -37,7 +37,6 @@ const HeaderRows =  [
     {id: 4, title: 'SKU'},
     {id: 5, title: 'Category'},
     {id: 6, title: 'Price'},
-    {id: 7, title: 'Availability'},
     {id: 8, title: 'Quantity'},
     {id: 9, title: 'Sold'},
     {id: 10, title: ''}
@@ -128,7 +127,6 @@ const Products = () => {
                                 <TableCell>{product.sku}</TableCell>
                                 <TableCell>{product.category}</TableCell>
                                 <TableCell>{product.price}</TableCell>
-                                <TableCell>{product.avb}</TableCell>
                                 <TableCell>{product.quantity}</TableCell>
                                 <TableCell>{product.sold}</TableCell>
                                 <TableCell>

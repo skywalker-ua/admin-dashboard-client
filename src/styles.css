@@ -125,6 +125,10 @@
     align-items: center;
 }
 
+.page-product {
+    width: 95%;
+}
+
 .form-button {
     width: 20%;
 }

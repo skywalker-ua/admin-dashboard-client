@@ -81,6 +81,7 @@ const ProductEdit = (props) => {
     }
 
     return(
+        <div className="page-product">
         <PageSurface title={'Edit product'}>
             <form className="product-edit__form" onSubmit={handleFormSubmit} >
                 <Input label="ID" value={formValue.id} onChange={handleInputChange} name="id" variant="outlined" type="number" />
@@ -93,6 +94,7 @@ const ProductEdit = (props) => {
                 <Button className="form-button" type="submit" color="primary" variant="contained">Edit</Button>
             </form>
         </PageSurface>
+        </div>
     );
 };
 

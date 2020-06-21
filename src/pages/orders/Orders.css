@@ -5,6 +5,19 @@
     width: 80%;
 }
 
+.surface-content-wrapper {
+    height: 100%;
+}
+
+.orders-main {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    width: 95%;
+    height: 100%;
+    margin-bottom: 15px;
+}
+
 .product-selection-form {
     width: 90%;
 }
@@ -68,8 +81,16 @@
 
 .surface-content {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     padding: 20px;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.surface-content_main {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
 }
 
 .surface-header__order-details {
@@ -84,13 +105,12 @@
 
 .surface-content_client {
     display: flex;
-    width: 30%;
+    width: 70%;
     flex-flow: column nowrap;
 }
 
 .surface-content_order {
     display: flex;
-    margin-right: 20px;
     width: 100%;
     flex-flow: column nowrap;
 }
@@ -98,13 +118,41 @@
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
+    margin-bottom: 10px;
+    justify-content: space-between;
 }
 .surface-content_order-status {
     border: 1px solid #ddd;
     width: 100%;
-    padding: 25px;
+    padding: 20px;
+    margin-right: 10px;
     border-radius: 5px;
     position: relative;
+    max-height: 50px;
+}
+
+.surface-content_order-products-list {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+.surface-content_order-products-details {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.surface-content_order-products-sku {
+    color: rgb(153, 152, 152);
+    font-size: 0.8em;
+}
+
+.surface-content_order-products-info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .order-status-badge {
@@ -122,4 +170,55 @@
 
 .order-status-colored-text {
     font-size: 1.4em;
+}
+
+.order-total {
+    font-size: 1.4em;
+}
+
+.surface-main {
+    display: flex;
+    height: 100%;
+    flex-flow: row nowrap;
+}
+
+.surface-sidebar {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px;
+    width: 20%;
+}
+
+.surface-sidebar__content {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+.surface-sidebar__user-info {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 5px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.user-details__text {
+    font-size: 1.1em;
+    color: rgb(124, 124, 124);
+}
+
+.sidebar_creds {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    flex-flow: column nowrap;
+}
+
+.sidebar_username {
+    color: rgb(124, 124, 124);
+}
+
+.sidebar_username_client {
+    font-weight: 600;
 }

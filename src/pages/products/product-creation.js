@@ -50,7 +50,7 @@ const ProductCreation = () => {
     }
 
     return(
-        <div className="page-product-creation">
+        <div className="page-product">
             <PageSurface title="Create new Product">
                 <form className="product-creation__form" onSubmit={formSubmitHandler}>
                     <Input name="id" onChange={handleInputChange} value={formValue.id} label="ID" variant="outlined" type="number" />
