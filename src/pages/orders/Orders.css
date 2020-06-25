@@ -222,3 +222,45 @@
 .sidebar_username_client {
     font-weight: 600;
 }
+
+@media (max-width: 600px) {
+    .order-status-colored-text {
+        font-size: 1em;
+    }
+
+    .surface-content_order-status {
+        padding: 5px;
+        max-height: 90px;
+    }
+
+    .order-status-text, .order-status-colored-text, .order-total {
+        font-size: 1em;
+        margin-left: 10px;
+    }
+
+    .order-status-badge {
+        position: absolute;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 10px;
+    }
+    .user-details__text {
+        font-size: 1em;
+    }
+    .sidebar_username {
+        font-size: .8em;
+    }
+    .sidebar_username_client {
+        font-weight: 400;
+        font-size: 1em;
+    }
+    .sidebar_creds {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-flow: column nowrap;
+    }
+}

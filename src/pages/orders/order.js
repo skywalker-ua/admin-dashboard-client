@@ -128,6 +128,7 @@ const Order = () => {
                             </div>
                         </div>
                     </div>
+                    <Divider orientation="vertical" style={{height: '72.5%'}} />
                     <div className="surface-sidebar"> 
                         <div className="surface-sidebar__content">
                             <div className="surface-sidebar__user-info">

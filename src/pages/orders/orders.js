@@ -25,7 +25,9 @@ const Orders = () => {
                 const orders = res.data;
                 setOrders(orders);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+            });
     }, [])
 
     return(

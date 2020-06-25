@@ -90,6 +90,7 @@ const Auth = (props) => {
                             }
                              })} 
                         name="email" 
+                        type="email"
                         label="Email"
                         helperText={errors.email?.message}
                         />
@@ -98,10 +99,10 @@ const Auth = (props) => {
                         error={Boolean(errors.password)} 
                         inputRef={register({ 
                             required: 'Password is required',
-                            minLength: {
-                                value: 6,
-                                message: 'Password must be 6 characters minimum'
-                            }
+                            // minLength: {
+                            //     value: 6,
+                            //     message: 'Password must be 6 characters minimum'
+                            // }
                           })} 
                         name="password" type="password" 
                         label="Password"
